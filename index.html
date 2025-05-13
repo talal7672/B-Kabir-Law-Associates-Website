@@ -458,7 +458,8 @@ flex-direction: column;
 
 z-index: 2;
 
-padding-bottom: 20px;
+padding-bottom: 0px;
+
 }
 
 
@@ -605,7 +606,7 @@ font-size: 19px;
 margin-top: 50px;
 font-family: 'Josefin Sans', sans-serif;
 font-weight: 400;
-color: #707070;
+color: #A8A8A8;
 letter-spacing: 3px;
 font-style: normal;
 padding-top: 100px;
@@ -632,13 +633,12 @@ align-items: center;
 text-align: center;
 
 font-family: 'Josefin Sans', sans-serif;
-color: #000;
-font-weight: 300;
+color: #454545;
 font-size: 30px;
 margin-top: 10px;
-margin-bottom: 110px;
+margin-bottom: 80px;
 position: relative; /* Make the parent relative for positioning the  hehe line */
-letter-spacing: 5px;
+letter-spacing: 4px !important;
 line-height: 35px;
 
 
@@ -671,13 +671,22 @@ transform: translateX(-50%); /* Center the line horizontally */
         <div class="underline"></div> 
       </div>
       <div class="about-text">
-        <p class="slide-left">
-          B. KABIR & LAW ASSOCIATES was established on 01 November 2006 and
-          successfully providing the services of Income tax for Individual & Company, Corporate Affairs, Auditing & Accounting services, Company Law & RJSC matters, 
-          VAT services, Pre-IPO services, etc in connection with Income Tax Ordinance 
-          1984, Companies Act 1994, Trade Organization Act, Societies Registration Act 
-          1932, Partnership Act 1932, Trust Act, , Sales Tax, Gift Tax, Customs Act, Value Added Tax Act, Estate Duty Act, Patent-Design and Trademark Registration Act, Copyright Act, Bangladesh Accounting Standard (BSA), International Accounting Standard (IAS) and   any other Acts which are prevailing and operative in Bangladesh. We are committed to provide the best services to our clients.
+        <p class="slide-left" style="font-size: 19px; line-height: 36px; color: #333; text-align: justify;">
+          <strong>B. KABIR & LAW ASSOCIATES</strong> was established on <strong>01 November 2006</strong> and successfully providing the services of 
+          <strong>Income Tax</strong> for Individual & Company, <strong>Corporate Affairs</strong>, 
+          <strong>Auditing & Accounting services</strong>, <strong>Company Law & RJSC matters</strong>, 
+          <strong>VAT services</strong>, <strong>Pre-IPO services</strong>, 
+          <span style="color: #858585;">etc in connection with</span> 
+          <em>Income Tax Ordinance 1984</em>, <em>Companies Act 1994</em>, <em>Trade Organization Act</em>, 
+          <em>Societies Registration Act 1932</em>, <em>Partnership Act 1932</em>, <em>Trust Act</em>, 
+          <em>Sales Tax</em>, <em>Gift Tax</em>, <em>Customs Act</em>, <em>Value Added Tax Act</em>, 
+          <em>Estate Duty Act</em>, <em>Patent-Design and Trademark Registration Act</em>, <em>Copyright Act</em>, 
+          <em>Bangladesh Accounting Standard (BSA)</em>, <em>International Accounting Standard (IAS)</em> 
+          <span style="color: #858585;">and any other Acts which are prevailing and operative in Bangladesh.</span> 
+          <strong>We are committed to provide the best services to our clients.</strong>
         </p>
+        
+        
       </div>
     </div>
   </div>
@@ -840,7 +849,7 @@ font-size: 19px;
 margin-top: 50px;
 font-family: 'Josefin Sans', sans-serif;
 font-weight: 550;
-color: #707070;
+color: #A8A8A8;
 letter-spacing: 3px;
 font-style: normal;
 
@@ -863,88 +872,94 @@ font-style: normal;
 
       <body>
         <!--practice card section start-->
-        <style>
-          * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-          }
-      
-          body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-          }
-      
-          .practice-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 50px;
-            margin: 0 auto;
-            max-width: 1300px;
-            margin-top: -100px;
-          }
-      
-          .practice-cards .service-box {
-            flex: 0 1 22%; /* Adjust width to fit 4 items per row */
-            margin: 0 7px;
-            text-align: center;
-            margin-bottom: 10px;
-          }
-      
-          .practice-cards .service-box img {
-            width: 50%; /* Adjust the size of the image as needed */
-            height: auto;
-            max-height: 220px;
-            
-            display: block;
-            object-fit: cover;
-            margin: 30px auto 0; /* Centers the image */
-            padding: 13px;
-          }
-      
-          .practice-cards .service-box h3 {
-            font-size: 15px;
-            font-family: 'Josefin Sans', sans-serif;
-            margin: 15px 0 8px;
-            letter-spacing: 1px;
-            margin-top: 5px;
-            letter-spacing: 2px;
-            font-weight: 600;
-          }
-      
-          .practice-cards .service-box p {
-            font-size: 20px;
-            font-family: 'Josefin Sans', sans-serif;
-            font-weight: 300;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
-            margin-top: 10px;
-            margin-bottom: 0px;
-          }
-      
-      
-          /* Responsive layout adjustments */
-          @media (max-width: 1200px) {
-            .practice-cards {
-              margin: 0 0px;
-              margin-top: -100px;
-            }
-          }
-      
-          @media (max-width: 900px) {
-            .practice-cards .service-box {
-              flex: 0 1 45%; /* Adjust to 2 items per row on medium screens */
-            }
-          }
-      
-          @media (max-width: 600px) {
-            .practice-cards .service-box {
-              flex: 0 1 100%; /* Adjust to 1 item per row on small screens */
-            }
-          }
-        </style>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f7f7;
+  }
+
+  .practice-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;    /* ensure all cards dock to the top */
+    gap: 20px;                   /* uniform spacing between cards */
+    padding: 50px;
+    max-width: 1300px;
+    margin: -100px auto 0;       /* combined your two margin declarations */
+  }
+
+  .practice-cards .service-box {
+    flex: 0 1 22%;               /* four cards per row */
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;               /* make each box a flex column */
+    flex-direction: column;
+    align-items: center;         /* center contents horizontally */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .practice-cards .service-box:hover {
+    transform: scale(1.05);
+    /* box-shadow removed */
+  }
+
+  .practice-cards .service-box img {
+    width: 40%;                  /* tweak as needed */
+    height: 120px;               /* fixed height for perfect horizontal alignment */
+    object-fit: contain;         /* keeps aspect ratio without cropping */
+    margin-top: 30px;
+    padding: 0;                  /* remove padding so height stays exact */
+  }
+
+  .practice-cards .service-box h3 {
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 5px 0 8px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #454545;
+    transition: color 0.3s ease;
+  }
+
+  .practice-cards .service-box p {
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .practice-cards .service-box:hover h3,
+  .practice-cards .service-box:hover p {
+    color: #B7A793;
+  }
+
+  /* Responsive layout adjustments */
+  @media (max-width: 1200px) {
+    .practice-cards { margin-top: -100px; }
+  }
+
+  @media (max-width: 900px) {
+    .practice-cards .service-box { flex: 0 1 45%; }
+  }
+
+  @media (max-width: 600px) {
+    .practice-cards .service-box { flex: 0 1 100%; }
+  }
+</style>
+
+        
+        
       
         <div class="practice-cards">
           <!-- Corporate & Securities -->
@@ -1003,7 +1018,7 @@ font-style: normal;
             <p>We prevent an occurrence by<br> educating clients</p>
           </div>
         </div>
-                                              <!--practice card section end-->
+<!--practice card section end-->
 
                                               
 
@@ -1105,129 +1120,196 @@ font-style: normal;
             <script>
               document.addEventListener('DOMContentLoaded', () => {
                 const counters = document.querySelectorAll('.number');
-
+                const duration = 2000; // total animation time in ms
                 const easeOutQuad = t => t * (2 - t);
-
-                counters.forEach(counter => {
-                  const isPercent = counter.dataset.target.endsWith('%');
-                  const rawTarget = isPercent
-                    ? parseInt(counter.dataset.target)
-                    : parseInt(counter.dataset.target);
-                  let start = null;
-
-                  const duration = 2000; // animation duration in ms
-
+            
+                function animateCounter(counter) {
+                  const raw = counter.dataset.target;
+                  const isPercent = raw.trim().endsWith('%');
+                  const target = parseInt(raw, 10);
+                  let startTime = null;
+            
                   function step(timestamp) {
-                    if (!start) start = timestamp;
-                    const progress = Math.min((timestamp - start) / duration, 1);
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
                     const eased = easeOutQuad(progress);
-                    const current = Math.floor(eased * rawTarget);
-
+                    const current = Math.floor(eased * target);
+            
                     counter.textContent = isPercent
                       ? current + '%'
                       : current.toLocaleString();
-
+            
                     if (progress < 1) {
                       requestAnimationFrame(step);
                     } else {
-                      // ensure final value is exact
+                      // ensure final value
                       counter.textContent = isPercent
-                        ? rawTarget + '%'
-                        : rawTarget.toLocaleString();
+                        ? target + '%'
+                        : target.toLocaleString();
                     }
                   }
-
+            
                   requestAnimationFrame(step);
+                }
+            
+                // Observer callback
+                const onIntersection = (entries, observer) => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      counters.forEach(animateCounter);
+                      observer.disconnect();  // stop observing once triggered
+                    }
+                  });
+                };
+            
+                // set up observer
+                const observer = new IntersectionObserver(onIntersection, {
+                  threshold: 0.5  // fire when 50% of the section is visible
                 });
+            
+                const section = document.querySelector('.counters');
+                if (section) observer.observe(section);
               });
-            </script>                                              
+            </script>
+            
       <!--client intro start-->
       
-            <style>
-              /* ==========================
-  INDUSTRIES SECTION
-  ========================== */
-              .industries-section {
-                padding: 4rem 2rem;
-                background: #fff;
-                font-family: 'Poppins', sans-serif;
-                color: #1e2a38;
-              }
+      <style>
+        /* ==========================
+           INDUSTRIES SECTION
+           ========================== */
+        .industries-section {
+          padding: 4rem 2rem;
+          background: #fff;
+          font-family: 'Poppins', sans-serif;
+          color: #1e2a38;
+        }
+      
+        .industries-section .container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+      
+        /* Layout: title on left, list on right */
+        .industries-content {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          column-gap: 3rem;
+          align-items: start;
+        }
+      
+        /* Title styling */
+        .industries-title {
+          font-family: 'Josefin Sans', sans-serif;
+          font-size: 60px;
+          font-weight: 300;
+          color: #454545;              /* brown accent */
+          letter-spacing: 4px;
+          margin: 0;
+          padding-right: 100px;
+        }
+      
+        /* Two-column inside the right area */
+        .industries-list {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+      
+        /* Each item */
+        .industry-item {
+          display: flex;
+          align-items: center;
+          padding: 0.75rem 0;
+          border-bottom: 1px solid #e5e8ec;
+          position: relative;
+          transition: background 0.3s, transform 0.3s;
+        }
+      
+        /* Icon styling + muted default */
+        .industry-icon {
+          width: 55px;
+          height: auto;
+          flex-shrink: 0;
+          margin-right: 19px;
+          filter: grayscale(80%) brightness(70%);
+          transition: filter 0.3s, transform 0.3s;
+          position: relative;
+          z-index: 1;
+        }
+        /* Brown halo behind icon */
+        .industry-icon::before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: -8px;
+          width: 61px;
+          height: 61px;
+          background: rgba(55,45,31,0.07);
+          border-radius: 50%;
+          z-index: -1;
+          transition: background 0.3s;
+        }
+      
+        /* Item label */
+        .industry-name {
+          font-size: 1rem;
+          font-weight: 700;
+          font-family: 'Josefin Sans', sans-serif;
+          line-height: 1.4;
+          color: #454545;
+          transition: color 0.3s;
+        }
+      
+        /* Hover states: lift, tint, color-pop (no shadow) */
+        .industry-item:hover {
+          background: rgba(55,45,31,0.02);
+          transform: translateY(-3px);
+        }
+        .industry-item:hover .industry-icon {
+          filter: none;
+          transform: scale(1.1);
+        }
+        .industry-item:hover .industry-icon::before {
+          background: rgba(55,45,31,0.15);
+        }
+        .industry-item:hover .industry-name {
+          color: #372d1f;
+        }
+      
+        /* Responsive: stack on small screens */
+        @media (max-width: 768px) {
+          .industries-content {
+            grid-template-columns: 1fr;
+          }
+          .industries-list {
+            grid-template-columns: 1fr;
+          }
+          .industries-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-right: 0;
+          }
+        }
 
-              .industries-section .container {
-                max-width: 1200px;
-                margin: 0 auto;
-              }
+        /* 1. Make sure every item—including the last in each column—has a bottom bar */
+.industry-item {
+  border-bottom: 1px solid #e5e8ec;  /* reinforce the border */
+}
 
-              /* Layout: title on left, list on right */
-              .industries-content {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                column-gap: 3rem;
-                align-items: start;
-              }
+/* If your theme still has a "remove last-child" rule, override it: */
+.industry-column .industry-item:last-child {
+  border-bottom: 1px solid #e5e8ec !important;
+}
 
-              /* Title styling */
-              .industries-title {
-                font-family: "Poppins", sans-serif;
-                padding-right: 100px;
-                font-size: 2rem;
-                font-weight: 700;
-                margin: 0;
-              }
+/* 2. On hover, label goes to your sand-tone accent */
+.industry-item:hover .industry-name {
+  color: #CDB699;
+}
 
-              /* Two‐column inside the right area */
-              .industries-list {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-              }
-
-              /* Each item */
-              .industry-item {
-                display: flex;
-                align-items: center;
-                padding: 0.75rem 0;
-                border-bottom: 1px solid #e5e8ec;
-              }
-
-              /* Icon */
-              .industry-icon {
-                width: 45px;
-                height: auto;
-                margin-right: 1rem;
-                flex-shrink: 0;
-              }
-
-              /* Text */
-              .industry-name {
-                font-size: 1.0rem;
-                font-weight: 700;
-                font-family: "Josefin Sans", sans-serif;
-                line-height: 1.4;
-              }
-
-              /* Remove bottom border on last item of each column */
-              .industry-column .industry-item:last-child {
-                border-bottom: none;
-              }
-
-              /* Responsive: stack on small screens */
-              @media (max-width: 768px) {
-                .industries-content {
-                  grid-template-columns: 1fr;
-                }
-
-                .industries-list {
-                  grid-template-columns: 1fr;
-                }
-
-                .industries-title {
-                  text-align: center;
-                  margin-bottom: 1.5rem;
-                }
-              }
-            </style>
+      </style>
+      
+      
            
 
             <body>
@@ -1288,7 +1370,16 @@ font-style: normal;
       
       <!--client intro end-->  
 
-      <section id="client-carousel" class="bg-gray-200">
+     
+
+
+
+
+
+
+
+
+ <section id="client-carousel" class="bg-gray-200">
         <div class="overflow-x-auto scroll-smooth snap-x snap-mandatory flex items-center space-x-4 py-8 max-w-full">
       
 <div class="snap-start flex-shrink-0 pl-8">
@@ -1385,282 +1476,339 @@ font-style: normal;
 </section>
 
 
-
-
-
-
-
-
-
-
-<div class="new-hero-section-v2">
-<div class="container-v2">
-<div class="content-v2">
-<div class="text-v2">
-<h1>DEFINING<br>SUCCESS<br>TOGETHER</h1>
-<p>
-Crafted with care and tradition, our exquisite collection of agarwood-infused products offers a timeless experience of luxury and sustainability.
-</p>
-
-</div>
-<div class="graphic-v2">
-<img src="img/overlay7672.png" alt="Heritage Scent" class="new-hero-image-v2"> <!-- Replace with a unique image -->
-</div>
-</div>
-<dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-<div class="flex flex-col-reverse gap-1">
-
-</div>
-<div class="flex flex-col-reverse gap-1">
-
-
-</div>
-<div class="flex flex-col-reverse gap-1">
-
-</div>
-<div class="flex flex-col-reverse gap-1">
-
-</div>
-</dl>
-</dl>
-</div>
-</div>
-
-<script>
-  module.exports = {
-  // ... other Tailwind configurations
-  theme: {
-    extend: {
-      fontFamily: {
-        'josefin-sans': ['"Josefin Sans"', 'sans-serif'], 
-      },
-    },
-  },
-  // ...
-};
-</script>
-
+      <section class="new-hero-section-v2">
+        <div class="container-v2">
+          <div class="content-v2">
+            <div class="text-v2">
+              <h1>DEFINING<br>SUCCESS<br>TOGETHER</h1>
+              <p>
+                Crafted with care and tradition, our exquisite collection of
+                agarwood-infused products offers a timeless experience of luxury
+                and sustainability.
+              </p>
+             
+            </div>
+            <div class="graphic-v2">
+              <img
+                src="img/overlay7672.png"
+                alt="Heritage Scent Illustration"
+                class="new-hero-image-v2 doodle"
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
 
-body {
-font-family: 'Josefin Sans', sans-serif;
-line-height: 1.6;
-}
 
-/* New Hero section */
+/* ========== Hero Section ========== */
 .new-hero-section-v2 {
-position: relative;
-min-height: 85vh; /* Default height for desktop */
-display: flex;
-align-items: center; /* Vertically center the content */
-justify-content: center;
-color: white; /* Change text color to white */
-background-image: url('img/cutefirm_edited_edited.jpg'); /* Add your background image here */
-background-size: cover;
-background-position: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 85vh;
+  background: url('img/cutefirm_edited_edited.jpg') center/cover no-repeat;
 }
 
+/* 1. Lighter contrast overlay */
 .new-hero-section-v2::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)); /* Black gradient */
-z-index: -1;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.6)
+  );
+  z-index: 1;
 }
 
-/* Container for hero content */
+/* Container sits above overlay */
 .container-v2 {
-width: 100%;
-max-width: 1200px;
-padding: 0 20px;
-margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+/* Flex layout for text + graphic */
 .content-v2 {
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-between;
-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
-/* Styling for text block */
+/* ========== Text Block ========== */
 .text-v2 {
-flex: 1;
-max-width: 50%;
-text-align: left;
-padding-top: 50px;
+  flex: 1 1 380px;
+  max-width: 600px;
+  color: #fff;
 }
 
 .text-v2 h1 {
-font-size: 4.6rem;
-margin-bottom: 20px;
-line-height: 1.0;
-font-weight: 900;
-font-family: "Josefin Sans", sans-serif;
-letter-spacing: -1px;
-padding-bottom: 10px;
-color: #CCA875;
-
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 3rem;
+  color: #CCA875;
 }
 
 .text-v2 p {
-font-size: 1.2rem;
-line-height: 28px;
-font-style: normal;
-font-family: 'Josefin Sans', Times, serif;
-font-weight: 500;
-
-padding-bottom: 40px;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-family: "Josefin Sans", sans-serif;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 2rem;
 }
 
-.text-v2 article {
-font-size: 1.2rem;
-font-style: italic;
-line-height: 28px;
-font-family: 'EB Garamond', Times, serif;
-padding-right: 70px !important;
-}
 
-/* Styling for graphic block */
+/* ========== Graphic & Animation ========== */
 .graphic-v2 {
-flex: 1;
-max-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .new-hero-image-v2 {
-max-width: 100%;
-height: auto;
+  max-width: 100%;
+  height: auto;
+  animation: float 4s ease-in-out infinite;
 }
 
-/* Mobile View */
+/* 2. More pronounced float + slight rotate */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+/* ========== Responsive Adjustments ========== */
 @media (max-width: 768px) {
-.new-hero-section-v2 {
-min-height: 140vh;
+  .new-hero-section-v2 {
+    min-height: 140vh;
+    justify-content: center;
+  }
+  .content-v2 {
+    flex-direction: column;
+    text-align: center;
+  }
+  .text-v2 {
+    max-width: 100%;
+  }
+  .text-v2 h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+  .text-v2 p {
+    margin: 0 auto 1.5rem;
+  }
+  .graphic-v2 {
+    margin-top: 2rem;
+  }
 }
 
-.content-v2 {
-flex-direction: column;
-text-align: center;
-justify-content: center;
-height: 100%;
-align-items: center;
-}
+  /* make each letter an inline-block so transforms work */
+  .text-v2 h1 .letter {
+    display: inline-block;
+    will-change: transform, color;
+  }
 
-.text-v2 {
-max-width: 100%;
-padding-top: 1px;
-font-size: 2.4rem;
-}
 
-.text-v2 h1 {
-font-size: 3.5rem;
-line-height: 1.1;
-text-align: center;
-}
+</style> 
 
-.graphic-v2 {
-margin-top: 40px;
-}
 
-.text-v2 p {
-text-align: center;
-padding: 0 20px;
-margin: 0 auto;
-width: 100%;
-max-width: 90%;
-box-sizing: border-box;
-overflow-wrap: break-word;
-}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const heading = document.querySelector('.text-v2 h1');
+    // grab the original nodes (<text> and <br>)
+    const originals = Array.from(heading.childNodes);
+    // clear it out
+    heading.innerHTML = '';
+  
+    // re-build: text nodes → spans, brs → br
+    originals.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent.split('').forEach(char => {
+          const span = document.createElement('span');
+          span.className = 'letter';
+          span.textContent = char;
+          heading.appendChild(span);
+        });
+      } else if (node.nodeName === 'BR') {
+        heading.appendChild(document.createElement('br'));
+      }
+    });
+  
+    // now animate
+    const letters = heading.querySelectorAll('.letter');
+    letters.forEach((el, i) =>
+      setTimeout(() => bounce(el), i * 100 + Math.random() * 500)
+    );
+  
+    function bounce(el) {
+      const up = -(15 + Math.random() * 15),
+            rot = (Math.random() - 0.5) * 30;
+      el.animate([
+        { transform: 'translateY(0) rotate(0deg)',   color: '#CCA875' },
+        { transform: `translateY(${up}px) rotate(${rot}deg) scale(1.2)`, color: '#FFD786' },
+        { transform: 'translateY(0) rotate(0deg)',   color: '#CCA875' }
+      ], {
+        duration: 600,
+        easing: 'cubic-bezier(.25,.75,.5,1)'
+      });
+      setTimeout(() => bounce(el), 2000 + Math.random() * 3000);
+    }
+  });
+  </script>
 
-.text-v2 article {
-text-align: center;
-padding: 0 20px;
-margin: 0 auto;
-width: 100%;
-max-width: 100%;
-box-sizing: border-box;
-overflow-wrap: break-word;
-padding-top: 50px;
-}
-}
+
+
+
+
+
+
+<!-- 1. Load Josefin Sans -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<div class="new-hero-section font-josefin-sans">
+  <div class="container">
+    <div class="content">
+      <div class="text">
+        <h1>Embrace Heritage, Indulge in Luxury</h1>
+        <p>
+          Crafted with care and tradition, our exquisite collection of
+          agarwood-infused products offers a timeless experience of luxury
+          and sustainability.
+        </p>
+        <article>
+          At GOAT, we blend the art of natural distillation with a commitment
+          to eco-conscious innovation. Experience a world of fragrant elegance
+          with our alcohol-free perfumes, artisanal skincare, and wellness
+          products, all sustainably sourced.
+        </article>
+      </div>
+      <div class="graphic">
+        <img
+          src="img/cuteart.png"
+          alt="Heritage Scent"
+          class="new-hero-image"
+        >
+      </div>
+    </div>
+
+    <!-- 2. Features row with Josefin Sans everywhere -->
+    <dl
+      class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4 font-josefin-sans"
+    >
+      <div class="flex flex-col-reverse gap-1">
+        <div class="flex items-center gap-4">
+          <img
+            src="img/cutemini1.png"
+            alt="Premium Perfumes"
+            class="w-12 h-12 object-cover"
+          >
+          <div>
+            <dd
+              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
+            >
+              PREMIUM PERFUMES
+            </dd>
+            <dt
+              class="text-[0.9rem] font-josefin-sans text-black"
+            >
+              Experience the elegance of alcohol-free
+            </dt>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col-reverse gap-1">
+        <div class="flex items-center gap-4">
+          <img
+            src="img/cutemini2.png"
+            alt="Agarwood Skincare"
+            class="w-12 h-12 object-cover"
+          >
+          <div>
+            <dd
+              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
+            >
+              AGARWOOD SKINCARE
+            </dd>
+            <dt
+              class="text-[0.9rem] font-josefin-sans text-black"
+            >
+              Nurture your skin with our luxurious goat milk
+            </dt>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col-reverse gap-1">
+        <div class="flex items-center gap-4">
+          <img
+            src="img/cutemini3.png"
+            alt="Luxury Lifestyle"
+            class="w-12 h-12 object-cover"
+          >
+          <div>
+            <dd
+              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
+            >
+              LUXURY LIFESTYLE
+            </dd>
+            <dt
+              class="text-[0.9rem] font-josefin-sans text-black"
+            >
+              Indulge in premium lifestyle accessories crafted.
+            </dt>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col-reverse gap-1">
+        <div class="flex items-center gap-4">
+          <img
+            src="img/cutemini4.png"
+            alt="Wellness"
+            class="w-12 h-12 object-cover"
+          >
+          <div>
+            <dd
+              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
+            >
+              WELLNESS PRODUCTS
+            </dd>
+            <dt
+              class="text-[0.9rem] font-josefin-sans text-black"
+            >
+              Relax and rejuvenate with our wellness oils and.
+            </dt>
+          </div>
+        </div>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<style>
+  /* KEEP your existing .new-hero-section, .container, .text, .graphic, etc. CSS here */
+  /* No changes needed—font-family is inherited via the .font-josefin-sans utility */
 </style>
 
-
-
-
-
-
-<div class="new-hero-section">
-<div class="container">
-<div class="content">
-<div class="text">
-<h1>Embrace Heritage, Indulge in Luxury</h1>
-<p>
-Crafted with care and tradition, our exquisite collection of agarwood-infused products offers a timeless experience of luxury and sustainability.
-</p>
-<article>
-At GOAT, we blend the art of natural distillation with a commitment to eco-conscious innovation. Experience a world of fragrant elegance with our alcohol-free perfumes, artisanal skincare, and wellness products, all sustainably sourced.
-</article>
-</div>
-<div class="graphic">
-<img src="img/cuteart.png" alt="Heritage Scent" class="new-hero-image"> <!-- Replace with a unique image -->
-</div>
-</div>
-<dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-<div class="flex flex-col-reverse gap-1">
-<div class="flex items-center gap-4">
-<img src="img/cutemini1.png" alt="Premium Perfumes" class="w-12 h-12 object-cover">
-<div>
-<dd class="text-[0.9rem] font-semibold tracking-tight text-black">PREMIUM PERFUMES</dd>
-<dt class="text-[0.9rem] text-black">Experience the elegance of alcohol-free</dt>
-</div>
-</div>
-</div>
-
-<div class="flex flex-col-reverse gap-1">
-<div class="flex items-center gap-4">
-<img src="img/cutemini2.png" alt="Agarwood Skincare" class="w-12 h-12 object-cover">
-<div>
-<dd class="text-[0.9rem] font-semibold tracking-tight text-black">AGARWOOD SKINCARE</dd>
-<dt class="text-[0.9rem] text-black">Nurture your skin with our luxurious goat milk</dt>
-</div>
-</div>
-</div>
-
-<div class="flex flex-col-reverse gap-1">
-<div class="flex items-center gap-4">
-<img src="img/cutemini3.png" alt="Luxury Lifestyle" class="w-12 h-12 object-cover">
-<div>
-<dd class="text-[0.9rem] font-semibold tracking-tight text-black">LUXURY LIFESTYLE</dd>
-<dt class="text-[0.9rem] text-black">Indulge in premium lifestyle accessories crafted.</dt>
-</div>
-</div>
-</div>
-
-<div class="flex flex-col-reverse gap-1">
-<div class="flex items-center gap-4">
-<img src="img/cutemini4.png" alt="Wellness" class="w-12 h-12 object-cover">
-<div>
-<dd class="text-[0.9rem] font-semibold tracking-tight text-black">WELLNESS PRODUCTS</dd>
-<dt class="text-[0.9rem] text-black">Relax and rejuvenate with our wellness oils and.</dt>
-</div>
-</div>
-</div>
-</dl>
-</div>
-</div>
 
 <style>
 * {
@@ -1682,6 +1830,7 @@ display: flex;
 align-items: center; /* Vertically center the content */
 justify-content: center;
 color: black; /* Change text color to black */
+margin-bottom: 50px;
 }
 
 .new-hero-section::before {
@@ -1726,15 +1875,17 @@ line-height: 1.0;
 font-weight: 400;
 font-family: "Josefin Sans", sans-serif;
 letter-spacing: -1px;
+color: #454545;
 }
 
 .text p {
-font-size: 1.2rem;
+font-size: 22px;
 line-height: 28px;
 font-family: 'Josefin Sans', sans-serif;
 font-weight: 300;
 padding-right: 70px;
 padding-bottom: 40px;
+color: #B7A793;
 }
 
 .text article {
@@ -1742,6 +1893,8 @@ font-size: 1.2rem;
 font-style: italic;
 line-height: 28px;
 font-family: 'EB Garamond', Times, serif;
+color: #000000;
+
 
 }
 
@@ -1817,6 +1970,9 @@ padding-top: 50px;
 }
 }
 </style>
+
+
+
 
           
 

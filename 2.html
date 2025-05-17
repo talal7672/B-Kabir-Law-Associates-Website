@@ -3,221 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <title>Your Private Space</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: white;
-      color: black;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-top: 100px;
-    }
-
-    .changing-text {
-      display: inline-block;
-      color: black;
-      position: relative;
-    }
-
-    .fade-out-in {
-      animation: fade 1.5s ease-in-out;
-    }
-
-    @keyframes fade {
-      0%   { opacity: 1; }
-      40%  { opacity: 0; }
-      60%  { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-top: 20px;
-      max-width: 800px;
+    <style>
+    /* ============= Container ============= */
+    .features {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
       margin: 0 auto;
-    }
-
-    button {
-      margin-top: 30px;
-      padding: 15px 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      background-color: black;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .footer {
-      margin-top: 40px;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .footer span {
-      margin: 0 10px;
-    }
-
-    /* Upload Section */
-    .upload-section {
-      margin-top: 100px;
-      background: #FFEB3B;
-      padding: 60px 20px;
-    }
-
-    .upload-box {
-      background: white;
-      max-width: 600px;
-      margin: 0 auto;
-      border-radius: 16px;
       padding: 40px 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+      font-family: sans-serif;
     }
 
-    .upload-box h2 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .upload-box p {
-      margin: 0 0 30px;
-      color: #333;
-    }
-
-    .upload-icon {
-      width: 80px;
-      height: 80px;
-      margin: 30px auto;
-      border-radius: 50%;
-      background: #FFEB3B;
+    /* ============= Individual Feature ============= */
+    .feature {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px dashed black;
-      font-size: 2rem;
+      align-items: flex-start;
+      width: 25%;
+      cursor: pointer;              /* show it’s interactive */
     }
 
-    .upload-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-      flex-wrap: wrap;
+    /* ============= Icon ============= */
+    .feature .icon {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      margin-right: 16px;
+    }
+    .feature .icon img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
-    .upload-button {
-      background: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 16px;
-      font-size: 1rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: black;
-      min-width: 100px;
-      justify-content: center;
+    /* ============= Text Block ============= */
+    .feature .text {
+      flex: 1 1 auto;
     }
 
-    /* keep file-inputs in the DOM but off-screen & invisible */
-    .hidden-file-input {
-      position: absolute;
-      left: -9999px;
-      width: 0;
-      height: 0;
-      opacity: 0;
-      overflow: hidden;
+    .feature .text h3,
+    .feature .text p {
+      /* smooth color transition */
+      transition: color 0.3s ease;
     }
+
+    .feature .text h3 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0 0 8px 0;
+      line-height: 1.2;
+      color: #000;                  /* default title color */
+    }
+
+    .feature .text p {
+      font-size: 12px;
+      margin: 0;
+      line-height: 1.4;
+      color: #333;                  /* default body color */
+    }
+
+    /* ============= Hover Styles ============= */
+    .feature:hover .text h3,
+    .feature:hover .text p {
+      color: #0056b3;               /* ← your hover color here */
+    }
+
+
+    .feature {
+  display: flex;
+  align-items: flex-start;
+  width: 25%;
+  cursor: pointer;
+
+  /* add this: */
+  transition: transform 0.3s ease, /* zoom */
+              box-shadow 0.3s ease; /* optional shadow */
+  transform-origin: center;        /* scale from center */
+}
+
+.feature:hover {
+  transform: scale(1.05);  /* zoom in 5% */
+  /* optional: give it a little lift */
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+}
+
+/* keep your text‐color transition */
+.feature .text h3,
+.feature .text p {
+  transition: color 0.3s ease;
+}
+
+.feature:hover .text h3,
+.feature:hover .text p {
+  color: #0056b3;
+}
+
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <h1>Your Private Space for 
-    <span class="changing-text" id="dynamicWord">File-Sharing</span>
-  </h1>
-  <p>
-    Welcome to a healthier internet where you can customise your collaboration space without<br>
-    compromising on privacy and security.
-  </p>
-  <button type="button">Discover More</button>
-  <div class="footer">
-    <span>Privacy preserving</span> - 
-    <span>Open source</span> - 
-    <span>Customizable</span>
-  </div>
-
-  <!-- UPLOAD SECTION -->
-  <div class="upload-section">
-    <div class="upload-box">
-      <h2>Just upload and share!</h2>
-      <p>You upload, you encrypt, IPFS & Arweave store.</p>
-      <div class="upload-icon">📄⬆️</div>
-
-      <!-- Hidden file inputs (off-screen) -->
-      <input type="file" id="imageInput" accept="image/*" class="hidden-file-input">
-      <input type="file" id="videoInput" accept="video/*" class="hidden-file-input">
-      <input type="file" id="audioInput" accept="audio/*" class="hidden-file-input">
-      <input type="file" id="genericInput" class="hidden-file-input">
-
-      <div class="upload-buttons">
-        <button type="button" class="upload-button" id="uploadImageBtn">🖼️ Image</button>
-        <button type="button" class="upload-button" id="uploadVideoBtn">🎥 Video</button>
-        <button type="button" class="upload-button" id="uploadAudioBtn">🎤 Audio</button>
-        <button type="button" class="upload-button" id="uploadGenericBtn">⋮</button>
+  <section class="features">
+  
+    <div class="feature">
+      <div class="icon">
+        <img src="icons/corporate_compliance.png" alt="Corporate Compliance">
+      </div>
+      <div class="text">
+        <h3>Corporate Compliance</h3>
+        <p>Ensuring your business adheres to all regulatory frameworks and governance standards.</p>
       </div>
     </div>
-  </div>
-
-  <script>
-    // 1) rotating hero text
-    const words = ["File-Sharing", "3D Visualization", "Collaboration", "Brainstorming"];
-    const dynamicText = document.getElementById("dynamicWord");
-    let idx = 0;
-    setInterval(() => {
-      dynamicText.classList.remove("fade-out-in");
-      void dynamicText.offsetWidth;
-      dynamicText.classList.add("fade-out-in");
-      idx = (idx + 1) % words.length;
-      setTimeout(() => {
-        dynamicText.textContent = words[idx];
-      }, 750);
-    }, 3000);
-
-    // 2) wire upload buttons to hidden inputs
-    const imageInput   = document.getElementById('imageInput');
-    const videoInput   = document.getElementById('videoInput');
-    const audioInput   = document.getElementById('audioInput');
-    const genericInput = document.getElementById('genericInput');
-
-    document.getElementById('uploadImageBtn')
-      .addEventListener('click', () => imageInput.click());
-    document.getElementById('uploadVideoBtn')
-      .addEventListener('click', () => videoInput.click());
-    document.getElementById('uploadAudioBtn')
-      .addEventListener('click', () => audioInput.click());
-    document.getElementById('uploadGenericBtn')
-      .addEventListener('click', () => genericInput.click());
-
-    // 3) handle file selection
-    function handleFiles(files, type) {
-      console.log(`Selected ${type}:`, files);
-      // TODO: encrypt & upload to IPFS/Arweave
-    }
-    imageInput.addEventListener('change', e => handleFiles(e.target.files, 'images'));
-    videoInput.addEventListener('change', e => handleFiles(e.target.files, 'videos'));
-    audioInput.addEventListener('change', e => handleFiles(e.target.files, 'audio'));
-    genericInput.addEventListener('change', e => handleFiles(e.target.files, 'files'));
-  </script>
+  
+    <div class="feature">
+      <div class="icon">
+        <img src="icons/legal_advisory.png" alt="Legal Advisory">
+      </div>
+      <div class="text">
+        <h3>Legal Advisory</h3>
+        <p>Strategic counsel on mergers, acquisitions, and day‑to‑day corporate matters.</p>
+      </div>
+    </div>
+  
+    <div class="feature">
+      <div class="icon">
+        <img src="icons/dispute_resolution.png" alt="Dispute Resolution">
+      </div>
+      <div class="text">
+        <h3>Dispute Resolution</h3>
+        <p>Expert representation in arbitration, mediation, and court proceedings.</p>
+      </div>
+    </div>
+  
+    <div class="feature">
+      <div class="icon">
+        <img src="icons/contract_drafting.png" alt="Contract Drafting">
+      </div>
+      <div class="text">
+        <h3>Contract Drafting</h3>
+        <p>Precise drafting and review of agreements to protect your interests.</p>
+      </div>
+    </div>
+  
+  </section>
 </body>
 </html>

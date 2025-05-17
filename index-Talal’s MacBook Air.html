@@ -1297,24 +1297,22 @@ animation-delay: 2.2s;
 
   .industries-content {
     grid-template-columns: 1fr;
-    padding: 0 0; /* we want the outer container tight */
+    padding: 0 0px;
+    margin-left: -20px;
   }
 
   .industries-list {
     grid-template-columns: 1fr;
-    justify-items: stretch;
+    justify-items: start; /* 💥 ensures items go left in grid */
     padding: 0;
   }
 
   .industry-item {
-    justify-content: flex-start;
+    justify-content: flex-start !important; /* 💣 force flex children to left */
     align-items: center;
     text-align: left;
-    padding: 0 0px; /* ✅ Left/right padding for bar + spacing consistency */
-    
-    border-bottom: 1px solid #e5e8ec;
-    width: 100%;
-    box-sizing: border-box; /* ensures padding doesn't break layout */
+    margin: 0;
+    width: 100%; /* 💥 prevent shrink */
   }
 
   .industry-icon {
@@ -1323,9 +1321,6 @@ animation-delay: 2.2s;
 
   .industry-name {
     text-align: left;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-left: -10px;
   }
             .industries-title {
             text-align: left;
@@ -1335,12 +1330,6 @@ animation-delay: 2.2s;
             padding-right: 0;
             padding-left: 20px;
           }
-          .industry-icon,
-          
-          .industries-title{
-            margin-left: -20px;
-          }
-          
 }
 
 
@@ -1655,26 +1644,24 @@ animation-delay: 2.2s;
 /* ========== Responsive Adjustments ========== */
 @media (max-width: 768px) {
   .new-hero-section-v2 {
-    min-height: 90vh;
+    min-height: 140vh;
     justify-content: center;
   }
   .content-v2 {
     flex-direction: column;
-    text-align: left;
-    margin-left: 15px;
-    
+    text-align: center;
   }
   .text-v2 {
     max-width: 100%;
   }
   .text-v2 h1 {
-    font-size: clamp(3rem, 10vw, 3.5rem);
+    font-size: clamp(2rem, 10vw, 3.5rem);
   }
   .text-v2 p {
-    margin: 0 auto 0rem;
+    margin: 0 auto 1.5rem;
   }
   .graphic-v2 {
-    margin-top: -60px;
+    margin-top: 2rem;
   }
 }
 
@@ -1881,7 +1868,6 @@ animation-delay: 2.2s;
   .k9F3jRzBxLqP_container {
     flex-direction: column;
     align-items: stretch;   /* let children fill the width */
-    
   }
 
   /* each block now full‑width, with some spacing */
@@ -2056,61 +2042,54 @@ padding-right: 70px;
 
 /* Mobile View */
 @media (max-width: 768px) {
-  .new-hero-section {
-    min-height: 100vh;
-  }
-
-  .content {
-    flex-direction: column;
-    text-align: left; /* ✅ changed from center */
-    justify-content: center;
-    height: 100%;
-    padding: 0 20px;  /* ✅ add horizontal padding globally */
-    box-sizing: border-box;
-  }
-
-  .text {
-    max-width: 100%;
-    padding-top: 0px;
-    font-size: 2.4rem;
-  }
-
-  .text h1 {
-    margin-top: 70px;
-    font-size: 2.5rem;
-    line-height: 1.1;
-    text-align: left; /* ✅ changed from center */
-  }
-  
-  .new-hero-image {
-    min-width: 45vh; /* 140% of viewport height */
-    min-height: auto;
-  }
-
-  .text p {
-    text-align: left; /* ✅ changed from center */
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
- 
-    
-
-  .text article {
-    text-align: left; /* ✅ changed from center */
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    padding-top: 45px;
-    padding-bottom: 45px;
-  }
+.new-hero-section {
+min-height: 130vh;
 }
 
+.content {
+flex-direction: column;
+text-align: center;
+justify-content: center;
+height: 100%;
+}
+
+.text {
+max-width: 100%;
+padding-top: 100px;
+font-size: 2.4rem;
+}
+
+.text h1 {
+font-size: 3.5rem;
+line-height: 1.1;
+text-align: center;
+}
+
+.graphic {
+margin-top: 40px;
+}
+
+.text p {
+text-align: center;
+padding: 0 20px;
+margin: 0 auto;
+width: 100%;
+max-width: 90%;
+box-sizing: border-box;
+overflow-wrap: break-word;
+}
+
+.text article {
+text-align: center;
+padding: 0 20px;
+margin: 0 auto;
+width: 100%;
+max-width: 100%;
+box-sizing: border-box;
+overflow-wrap: break-word;
+padding-top: 50px;
+}
+}
 </style>
 
 

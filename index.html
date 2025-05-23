@@ -41,6 +41,14 @@
     
     
   }
+
+  
+
+
+
+
+
+
   .navbar .logo {
   display: flex;
   align-items: center;
@@ -124,6 +132,7 @@
     z-index: 9999;
     overflow-y: auto;
     padding-top: 200px;
+    box-sizing: border-box;
   }
 
   .dropdown-menu.active {
@@ -144,11 +153,31 @@
     letter-spacing: 4px;
   }
 
-  @media (max-width: 767.98px) {
-.dropdown-menu {
-  padding-left: 105px;
-}
-
+/* mobile overrides */
+@media (max-width: 767.98px) {
+  .dropdown-menu {
+    /* span the entire viewport */
+    left: 0;
+    right: 0;
+    width: auto;       /* override the 500px */
+    height: 100%;
+    
+    /* your top/bottom can stay the same */
+    padding-left: 2.5rem; /* equal 2rem padding on left + right */
+    padding-right: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    
+    /* for hiding/showing, you can move it off-screen by 100% */
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .dropdown-menu.active {
+    transform: translateX(0);
+  }
+  .dropdown-menu .services-submenu a {
+    margin-bottom: 10px;
+  }
 }
 
 
@@ -188,9 +217,9 @@
     transition: background-color 0.3s;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     color: black;
-    font-size: 0.8rem;
+    font-size: 16px;
   }
 
   .dropdown-menu .live-location:hover {
@@ -460,7 +489,151 @@ padding-bottom: 0px;
 height: 40vh; /* Extra scroll space */
 background-color: transparent; /* Transparent background */
 }
+
+
+:root {
+  --bar-width: 350px;
+}
+
+/* ─── Services wrapper ─── */
+.dropdown-menu .services-item {
+  width: 100%;
+}
+
+/* ─── Toggle (Firm, Services, Personell) ─── */
+.dropdown-menu .services-toggle {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+  font-size: 17px;
+  letter-spacing: 4px;
+  padding: 1.7rem 1rem; /* vertical | horizontal */
+}
+
+/* Top + bottom bars on each toggle */
+.dropdown-menu .services-toggle::before,
+.dropdown-menu .services-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: var(--bar-width);
+  height: 0.5px;
+  background-color: rgba(255,255,255,0.2);
+}
+.dropdown-menu .services-toggle::before {
+  top: 0;
+}
+.dropdown-menu .services-toggle::after {
+  bottom: 0;
+}
+
+/* Hide the toggle’s bottom bar when open */
+.dropdown-menu .services-toggle.active::after {
+  display: none;
+}
+
+/* ─── Arrow “V” ─── */
+.dropdown-menu .services-toggle .arrow {
+  position: relative;
+  width: 10px;
+  height: 6px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.dropdown-menu .services-toggle .arrow::before,
+.dropdown-menu .services-toggle .arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: currentColor;
+}
+.dropdown-menu .services-toggle .arrow::before {
+  left: 0;
+  transform-origin: bottom left;
+  transform: rotate(45deg);
+}
+.dropdown-menu .services-toggle .arrow::after {
+  right: 0;
+  transform-origin: bottom right;
+  transform: rotate(-45deg);
+}
+.dropdown-menu .services-toggle.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* ─── Submenu container ─── */
+.dropdown-menu .services-submenu {
+  display: none;
+  position: relative;      /* for its own ::after bar */
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Submenu links styling */
+.dropdown-menu .services-submenu a {
+  padding: 25px 0 0;
+  font-size: 15px;
+  letter-spacing: 3px;
+}
+
+/* Kill any bars on the individual submenu links */
+.dropdown-menu .services-submenu a::before,
+.dropdown-menu .services-submenu a::after {
+  content: none;
+  display: none;
+}
+
+/* ─── When submenu is open ─── */
+.dropdown-menu .services-submenu.active {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 1.9rem;  /* space before the bottom bar */
+  margin-bottom: 0;        /* tweak if you want extra gap below */
+}
+
+/* Draw a bottom bar under the open submenu block */
+.dropdown-menu .services-submenu.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--bar-width);
+  height: 0.5px;
+  background-color: rgba(255,255,255,0.2);
+}
+
+/* push all submenu items down a bit */
+.dropdown-menu .services-submenu {
+  padding-bottom: 1.9rem !important; /* or whatever value matches your .services-toggle padding */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
+
+
 
 
   </head>
@@ -469,31 +642,79 @@ background-color: transparent; /* Transparent background */
 
 <body>
 
-    <header class="navbar">
-        <div class="logo">
-          <img src="img/logoW.png" alt="Company Logo">
-          <span>B Kabir & Law Associates</span>
-        </div>
-        <button class="hamburger" onclick="toggleMenu()">
-          <div></div>
-          <div class="middle"></div>
-          <div></div>
-        </button>
-      </header>
-      
-      <div class="dropdown-menu" id="dropdown-menu">
-        <button class="close-btn" onclick="toggleMenu()">
-          <div></div>
-          <div></div>
-        </button>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="practice1.html">Services</a>
-        <a href="attorney.html">Attorney</a>
-        <a href="associates.html">Associates</a>
-        <a href="contact.html">Contact</a>
-        <button class="live-location" onclick="window.open('https://maps.app.goo.gl/5n88uqXQPzYyFhso7?g_st=ic')">Live Location</button>
-      </div> 
+<header class="navbar">
+<div class="logo">
+  <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+    <img src="img/logoW.png" alt="Company Logo">
+    <span>B Kabir &amp; Law Associates</span>
+  </a>
+</div>
+  <button class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div class="middle"></div>
+    <div></div>
+  </button>
+</header>
+
+<div class="dropdown-menu" id="dropdown-menu">
+  <button class="close-btn" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+  </button>
+
+  <!-- Firm section -->
+  <div class="services-item">
+    <div class="services-toggle">
+      Firm
+      <span class="arrow"></span>
+    </div>
+    <div class="services-submenu">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- Services section -->
+  <div class="services-item">
+    <div class="services-toggle">
+      Services
+      <span class="arrow"></span>
+    </div>
+    <div class="services-submenu">
+      <a href="service1.html">Taxation – Individual</a>
+      <a href="service2.html">Taxation – Company</a>
+      <a href="service3.html">Taxation – Firm, Trust, Foundation</a>
+      <a href="service4.html">Retainer &amp; Secretary Services</a>
+      <a href="service5.html">VAT Services</a>
+      <a href="service6.html">Accounting &amp; Audit</a>
+      <a href="service7.html">RJSC &amp; Company Law</a>
+      <a href="service8.html">Pre IPO Services</a>
+      <a href="service9.html">Land Services</a>
+      <a href="service10.html">License</a>
+      <a href="service11.html">HRM &amp; Labor Law</a>
+      <a href="service12.html">Merger &amp; Acquisition</a>
+    </div>
+  </div>
+
+  <!-- Personnel section -->
+  <div class="services-item">
+    <div class="services-toggle">
+      Personell
+      <span class="arrow"></span>
+    </div>
+    <div class="services-submenu">
+      <a href="attorney.html">Attorney</a>
+      <a href="associates.html">Associates</a>
+    </div>
+  </div>
+
+  <button class="live-location"
+          onclick="window.open('https://maps.app.goo.gl/5n88uqXQPzYyFhso7?g_st=ic')">
+    Live Location
+  </button>
+</div>
+
+
       
    
   
@@ -570,90 +791,107 @@ background-color: transparent; /* Transparent background */
 
     <!--ABOUT CSS START-->
 
-<div class client76></div>
+<div class="client76"></div>
+
 <div class="text-lines2">
-<p3>Welcome To</p3>
-<p2>B Kabir & Law Associates</p2>
+  <p class="text-section-line-welcome-text">Welcome To</p>
+  <p class="text-section-line-heading-main">B Kabir & Law Associates</p>
 </div>
 
 
 <style>
+/* === Default (Desktop + Tablet) === */
+.text-lines2 {
+  text-align: center;
+  padding: 0;
+}
 
-@media (max-width: 768px) { 
+.text-section-line-welcome-text {
+  font-size: 19px;
+  margin-top: 50px;
+  padding-top: 100px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  color: #A8A8A8;
+  letter-spacing: 3px;
+}
+
+.text-section-line-heading-main {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300 !important;
+  color: #454545;
+  font-size: 60px;
+  margin-top: 30px;
+  margin-bottom: 120px;
+  position: relative;
+  letter-spacing: 4px;
+  line-height: 35px;
+}
+
+/* Underline */
+.text-section-line-heading-main::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 70px;
+  width: 30px;
+  height: 1.5px;
+  background-color: #000;
+  transform: translateX(-50%);
+}
+
+/* === Mobile Only === */
+@media (max-width: 768px) {
   .text-lines2 {
-    margin-top: -70px !important;
-     /* Adjust this value as needed */
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -70px;
   }
-}  
 
-
-
-.text-lines2 p3{
-
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-font-size: 19px;
-margin-top: 50px;
-font-family: 'Josefin Sans', sans-serif;
-font-weight: 400;
-color: #A8A8A8;
-letter-spacing: 3px;
-font-style: normal;
-padding-top: 100px;
-
-
-
-}
-
-@media (min-width: 768px) { 
-  .text-lines2 p2 {
-    font-size: 60px;
-    letter-spacing: 10px !important;
-    font-weight: 300 !important;
-    line-height: 90px !important;
-    margin-top: -2px !important;
-     /* Adjust this value as needed */
+  .text-section-line-heading-main {
+    text-align: left;
+    font-size: 30px;
+    padding-left: 20px;
+    font-weight: 400 !important;
+    font-family: "Josefin Sans", sans-serif;
   }
-}
-
-.text-lines2 p2 {
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-
-font-family: 'Josefin Sans', sans-serif;
-color: #454545;
-font-size: 30px;
-margin-top: 10px;
-margin-bottom: 80px;
-position: relative; /* Make the parent relative for positioning the  hehe line */
-letter-spacing: 4px !important;
-line-height: 35px;
 
 
-}
+    .text-section-line-welcome-text {
+    left: 0;
+    transform: none;
+    padding-left: 20px;
+    margin-bottom: -10px;
+  }
 
-.text-lines2 p2::after {
-content: '';
-position: absolute; /* Position the line relative to the text */
-left: 50%; /* Center the line beneath the text */
-top: 90px; /* Place the line directly beneath the text */
-width: 30px; /* Adjust the thickness of the line */
-height: 1.5px; /* Adjust the height of the line */
-background-color: #000; /* Color of the line */
-transform: translateX(-50%); /* Center the line horizontally */
-
-
-
-
-
-
+    .text-section-line-heading-main::after {
+    left: 0;
+    transform: none;
+    margin: 20px;
+    display: none;
+    
+  }
 
 
 }
+
+
+
+
+</style>
+
+
+
+<style>
+
+
+
+
+
+
+
+
 </style>
 
 <div class="about">
@@ -685,41 +923,7 @@ transform: translateX(-50%); /* Center the line horizontally */
   
 
 <style>
-.about {
-position: relative;
-width: 100%;
-padding: 45px 0;
-text-align: left;
 
-}
-
-.container {
-max-width: 1200px; /* Ensures the content doesn't stretch too wide */
-margin: 0 auto; /* Centers the container */
-padding: 0 20px; /* Added padding on both sides of the container for more cohesion */
-}
-
-.About-Uss {
-display: inline-block; /* Makes the entire section inline-block */
-}
-
-.About-Uss h1 {
-font-family: 'Poppins', sans-serif;
-font-size: 14px; /* Size of the header */
-letter-spacing: 4px;
-font-style: normal;
-
-margin-bottom: 5px; /* Space between header and underline */
-}
-
-
-
-.about-text {
-font-size: 15px;
-font-family: 'Poppins' sans-serif; /* Font size for the text */
-line-height: 1.6; /* Line height for readability */
-margin-top: 25px;
-}
 
 .about-text p {
 margin-bottom: 15px; /* Space between paragraphs */
@@ -727,50 +931,16 @@ font-size: 19px;
 line-height: 36px;
 font-weight: 400;
 font-family: 'Josefin Sans', sans-serif;
-margin-top: -60px;
+margin-top: 10px;
 
 }
-
-
-@media (min-width: 767.98px) {
-
-.about-text p{
-  margin-top: -100px;
-}
-}
-
-
-
-
-
-
 
 @media (max-width: 767.98px) {
-/* Center the About section and adjust padding for mobile */
-.about {
-padding: 30px 15px; /* Responsive padding for mobile */
-text-align: center; /* Center-align the text in the about section */
-}
-
-
-
-.About-Uss {
-display: block; /* Use block display for full width and centering */
-text-align: center; /* Center the content inside the About-Uss */
-}
-
-.About-Uss h1 {
-font-size: 1.2rem; /* Increase font size for mobile */
-font-family: 'Poppins', sans-serif;
-letter-spacing: 2px;
-margin-bottom: 10px; /* Adjust space below heading */
-}
-
-
-
 
 .about-text p {
-text-align: left;
+text-align: left !important;
+padding: 20px;
+margin-top: -85px;
 }
 }
 
@@ -823,36 +993,84 @@ animation-delay: 2.2s;
 
   <!--pracice card title start-->
 
-<div class client76></div>
+<div class="client76"></div>
+
 <div class="text-lines2">
-<p1>What we are good at</p1>
-<p2>Practice Areas</p2>
+  <p class="text-section-subtitle">What we are good at</p>
+  <p class="text-section-title">Practice Areas</p>
 </div>
 
 
+
 <style>
-.text-lines2 p1{
-
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-font-size: 19px;
-margin-top: 50px;
-font-family: 'Josefin Sans', sans-serif;
-font-weight: 550;
-color: #A8A8A8;
-letter-spacing: 3px;
-font-style: normal;
-
-
+/* === Default (Desktop) === */
+.text-lines2 {
+  text-align: center;
+  padding: 0;
 }
 
-@media (min-width: 768px) { 
-  .text-lines2 p2 {
-    font-size: 60px; /* Adjust this value as needed */
+.text-section-subtitle {
+  font-size: 19px;
+  margin-top: 50px;
+  padding-top: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  color: #A8A8A8;
+  letter-spacing: 3px;
+}
+
+.text-section-title {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #454545;
+  font-size: 60px;
+  font-weight: 300;
+  margin-top: 30px;
+  margin-bottom: 100px;
+  position: relative;
+  letter-spacing: 4px;
+  line-height: 35px;
+}
+
+/* Decorative underline */
+.text-section-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 70px;
+  width: 30px;
+  height: 2px;
+  background-color: #000;
+  transform: translateX(-50%);
+}
+
+/* === Mobile Only === */
+@media (max-width: 768px) {
+  .text-lines2 {
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .text-section-subtitle {
+   padding-left: 20px; 
+  }
+
+  .text-section-title {
+    text-align: left;
+    font-size: 30px;
+    font-weight: 400;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+
+  .text-section-title::after {
+    left: 0;
+    transform: none;
+    display: none;
   }
 }
+
+
 
 
 </style>
@@ -945,9 +1163,20 @@ font-style: normal;
     .practice-cards .service-box { flex: 0 1 45%; }
   }
 
-  @media (max-width: 600px) {
-    .practice-cards .service-box { flex: 0 1 100%; }
+@media (max-width: 600px) {
+  .practice-cards .service-box {
+    flex: 0 1 100%;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 0px;
+    margin-top: -20px;
   }
+
+  .practice-cards .service-box img {
+    margin-left: -20px;
+  }
+}
+
 </style>
 
         
@@ -956,58 +1185,86 @@ font-style: normal;
         <div class="practice-cards">
           <!-- Corporate & Securities -->
           <div class="service-box">
-            <img src="img/practicecute2.png" alt="Corporate & Securities">
-            <h3>AUDIT SERVICE</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute1.png" alt="Corporate & Securities">
+            <h3>TAXATION - INDIVIDUAL</h3>
+            <p>Comprehensive tax planning, filing & compliance support for individual taxpayers</p>
           </div>
       
           <!-- Real Estate Law -->
           <div class="service-box">
-            <img src="img/practicecute1.png" alt="Real Estate Law">
-            <h3>RETURN FILING</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute2.png" alt="Real Estate Law">
+            <h3>TAXATION - COMPANY</h3>
+            <p>End-to-end corporate tax solutions, from compliance to strategic tax saving</p>
           </div>
       
           <!-- Health Care Law -->
           <div class="service-box">
-            <img src="img/practicecute4.png" alt="Health Care Law">
-            <h3>BUSINESS SUPPORT</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute3.png" alt="Health Care Law">
+            <h3>TAXATION - FIRM, TRUST & FOUNDATION</h3>
+            <p>Specialized tax advisory and filings for firms, trusts, and nonprofit </p>
           </div>
       
           <!-- Corporate & Securities (duplicate 1) -->
           <div class="service-box">
-            <img src="img/practicecute5.png" alt="Corporate & Securities">
-            <h3>VAT RETURN</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute4.png" alt="Corporate & Securities">
+            <h3>RETAINER & SECRETARY SERVICES</h3>
+            <p>Ongoing company secretarial services and compliance management</p>
           </div>
       
           <!-- Health Care Law (duplicate 1) -->
           <div class="service-box">
-            <img src="img/practicecute6.png" alt="Health Care Law">
-            <h3>SECRETARIAL AFFAIRS</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute5.png" alt="Health Care Law">
+            <h3>VAT SERVICES</h3>
+            <p>Expert VAT registration, filing, and advisory for businesses of all sizes</p>
           </div>
       
           <!-- Corporate & Securities (duplicate 2) -->
           <div class="service-box">
-            <img src="img/practicecute7.png" alt="Corporate & Securities">
-            <h3>LEGAL ADVICE</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute6.png" alt="Corporate & Securities">
+            <h3>ACCOUNTING & AUDIT</h3>
+            <p>Reliable accounting, statutory audits, and financial reporting solutions</p>
           </div>
       
           <!-- Corporate & Securities (duplicate 3) -->
           <div class="service-box">
-            <img src="img/practicecute1.png" alt="Corporate & Securities">
-            <h3>TRIBUNAL</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <img src="img/practicecute7.png" alt="Corporate & Securities">
+            <h3>CORPORATE FINANCE</h3>
+            <p>Advisory on funding, valuation, restructuring, and financial planning</p>
           </div>
       
           <!-- Corporate & Securities (duplicate 4) -->
           <div class="service-box">
+            <img src="img/practicecute4.png" alt="Corporate & Securities">
+            <h3>RJSC & COMPANY LAW</h3>
+            <p>Company registration, compliance, and legal advisory under RJSC and local laws</p>
+          </div>
+
+                    <!-- Corporate & Securities (duplicate 4) -->
+          <div class="service-box">
             <img src="img/practicecute1.png" alt="Corporate & Securities">
-            <h3>RJSC FILING</h3>
-            <p>We prevent an occurrence by<br> educating clients</p>
+            <h3>LAND SERVICES</h3>
+            <p>Assistance with land registration, mutation, transfer, and legal verification</p>
+          </div>
+
+                    <!-- Corporate & Securities (duplicate 4) -->
+          <div class="service-box">
+            <img src="img/practicecute7.png" alt="Corporate & Securities">
+            <h3>PRE-IPO SERVICES</h3>
+            <p>Strategic guidance and compliance support for companies planning to go public</p>
+          </div>
+
+                    <!-- Corporate & Securities (duplicate 4) -->
+          <div class="service-box">
+            <img src="img/practicecute4.png" alt="Corporate & Securities">
+            <h3>HRM & LABOR LAW</h3>
+            <p>Payroll, HR compliance, and legal support for labor law and employment issues</p>
+          </div>
+
+                    <!-- Corporate & Securities (duplicate 4) -->
+          <div class="service-box">
+            <img src="img/practicecute6.png" alt="Corporate & Securities">
+            <h3>MERGER & ACQUISITION</h3>
+            <p>Complete M&A advisory, due diligence, and legal facilitation</p>
           </div>
         </div>
 <!--practice card section end-->
@@ -1068,44 +1325,51 @@ font-style: normal;
             }
 
 
-            @media (max-width: 768px) {
+@media (max-width: 768px) {
   .counters {
     flex-direction: column;
     gap: 40px; /* reduce gap for vertical layout */
     padding: 40px 20px 0;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .counter .number {
     font-size: 2.8rem; /* slightly smaller for mobile */
+    text-align: left;
+    margin-left: -140px;
   }
 
   .counter .label {
     margin-bottom: 30px;
+    
+    margin-left: -140px;
   }
+
+  .counter .number::after {
+    margin-left: 0px;
 }
 
           </style>
          
 
-          <body>
+         
 
             <div class="counters">
               <div class="counter">
-                <div class="number" data-target="1200">0</div>
-                <div class="label">Happy Clients</div>
+                <div class="number" data-target="2006">0</div>
+                <div class="label">Established</div>
               </div>
               <div class="counter">
-                <div class="number" data-target="8880">0</div>
-                <div class="label">Finished Projects</div>
+                <div class="number" data-target="150">0</div>
+                <div class="label">Individual Clients</div>
               </div>
               <div class="counter">
-                <div class="number" data-target="16800">0</div>
-                <div class="label">Working Hours</div>
+                <div class="number" data-target="40">0</div>
+                <div class="label">Company Clients</div>
               </div>
               <div class="counter">
-                <div class="number" data-target="100">0%</div>
-                <div class="label">Satisfaction</div>
+                <div class="number" data-target="5">0%</div>
+                <div class="label">Firm/Trusts</div>
               </div>
             </div>
 
@@ -1271,17 +1535,61 @@ font-style: normal;
       
         /* Responsive: stack on small screens */
         @media (max-width: 768px) {
-          .industries-content {
-            grid-template-columns: 1fr;
-          }
-          .industries-list {
-            grid-template-columns: 1fr;
-          }
-          .industries-title {
-            text-align: center;
+
+  .industries-content {
+    grid-template-columns: 1fr;
+    padding: 0 0; /* we want the outer container tight */
+  }
+
+  .industries-list {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    padding: 0;
+  }
+
+  .industry-item {
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    padding: 0 0px; /* ✅ Left/right padding for bar + spacing consistency */
+    
+    border-bottom: 1px solid #e5e8ec;
+    width: 100%;
+    box-sizing: border-box; /* ensures padding doesn't break layout */
+  }
+
+  .industry-icon {
+    margin-right: 15px;
+  }
+
+  .industry-name {
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: -10px;
+  }
+            .industries-title {
+            text-align: left;
+            font-size: 30px;
+            font-weight: 400;
             margin-bottom: 1.5rem;
             padding-right: 0;
+            padding-left: 20px;
           }
+          .industry-icon,
+          
+          .industries-title{
+            margin-left: -20px;
+          }
+          
+}
+
+
+
+
+          
+          
+
         }
 
         /* 1. Make sure every item—including the last in each column—has a bottom bar */
@@ -1316,42 +1624,35 @@ font-style: normal;
                       <div class="industry-column">
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Banking and Finance</span>
+                          <span class="industry-name">Manufacturing & Industry</span>
                         </div>
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Sciences and Healthcare</span>
+                          <span class="industry-name">Real Estate & Contruction</span>
                         </div>
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Government and Communities</span>
+                          <span class="industry-name">Logistics & Trade</span>
                         </div>
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Technology and Software</span>
+                          <span class="industry-name">Banking & Finance</span>
                         </div>
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Power and Utilities</span>
+                          <span class="industry-name">Science & Healthcare</span>
                         </div>
                       </div>
                       <div class="industry-column">
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Education and Training</span>
+                          <span class="industry-name">Trust/Foundations</span>
                         </div>
                         <div class="industry-item">
                           <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Hospitality and Leisure</span>
+                          <span class="industry-name">Hospitality & Leisure </span>
                         </div>
-                        <div class="industry-item">
-                          <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Manufacturing and Industry</span>
-                        </div>
-                        <div class="industry-item">
-                          <img src="img/practicecute1.png" alt="" class="industry-icon">
-                          <span class="industry-name">Automotive and Transportation</span>
-                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -1474,9 +1775,8 @@ font-style: normal;
             <div class="text-v2">
               <h1>DEFINING<br>SUCCESS<br>TOGETHER</h1>
               <p>
-                Crafted with care and tradition, our exquisite collection of
-                agarwood-infused products offers a timeless experience of luxury
-                and sustainability.
+                Working hand-in-hand with out clients, we deliver tailored solutions that 
+                drive growth, build trust, and ensure long-terk success across industries
               </p>
              
             </div>
@@ -1588,24 +1888,26 @@ font-style: normal;
 /* ========== Responsive Adjustments ========== */
 @media (max-width: 768px) {
   .new-hero-section-v2 {
-    min-height: 140vh;
+    min-height: 90vh;
     justify-content: center;
   }
   .content-v2 {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
+    margin-left: 15px;
+    
   }
   .text-v2 {
     max-width: 100%;
   }
   .text-v2 h1 {
-    font-size: clamp(2rem, 10vw, 3.5rem);
+    font-size: clamp(3rem, 10vw, 3.5rem);
   }
   .text-v2 p {
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 0rem;
   }
   .graphic-v2 {
-    margin-top: 2rem;
+    margin-top: -60px;
   }
 }
 
@@ -1679,17 +1981,14 @@ font-style: normal;
   <div class="container">
     <div class="content">
       <div class="text">
-        <h1>Embrace Heritage, Indulge in Luxury</h1>
+        <h1>Crafting Clarity, Sparkling Success</h1>
         <p>
-          Crafted with care and tradition, our exquisite collection of
-          agarwood-infused products offers a timeless experience of luxury
-          and sustainability.
+          Blending expertise with innovation, we partner with clients across 
+          industries to solve complex challenges, ensure compliance, and unlock 
+          lasting value for their businesses.
         </p>
         <article>
-          At GOAT, we blend the art of natural distillation with a commitment
-          to eco-conscious innovation. Experience a world of fragrant elegance
-          with our alcohol-free perfumes, artisanal skincare, and wellness
-          products, all sustainably sourced.
+          At B. Kabir & Law Associates, our experienced professionals bring clarity, insight, and unwavering support—empowering your business to make confident decisions and achieve sustainable growth.
         </article>
       </div>
       <div class="graphic">
@@ -1705,93 +2004,10 @@ font-style: normal;
     <dl
       class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4 font-josefin-sans"
     >
-      <div class="flex flex-col-reverse gap-1">
-        <div class="flex items-center gap-4">
-          <img
-            src="img/cutemini1.png"
-            alt="Premium Perfumes"
-            class="w-12 h-12 object-cover"
-          >
-          <div>
-            <dd
-              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
-            >
-              PREMIUM PERFUMES
-            </dd>
-            <dt
-              class="text-[0.9rem] font-josefin-sans text-black"
-            >
-              Experience the elegance of alcohol-free
-            </dt>
-          </div>
-        </div>
-      </div>
 
-      <div class="flex flex-col-reverse gap-1">
-        <div class="flex items-center gap-4">
-          <img
-            src="img/cutemini2.png"
-            alt="Agarwood Skincare"
-            class="w-12 h-12 object-cover"
-          >
-          <div>
-            <dd
-              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
-            >
-              AGARWOOD SKINCARE
-            </dd>
-            <dt
-              class="text-[0.9rem] font-josefin-sans text-black"
-            >
-              Nurture your skin with our luxurious goat milk
-            </dt>
-          </div>
-        </div>
-      </div>
 
-      <div class="flex flex-col-reverse gap-1">
-        <div class="flex items-center gap-4">
-          <img
-            src="img/cutemini3.png"
-            alt="Luxury Lifestyle"
-            class="w-12 h-12 object-cover"
-          >
-          <div>
-            <dd
-              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
-            >
-              LUXURY LIFESTYLE
-            </dd>
-            <dt
-              class="text-[0.9rem] font-josefin-sans text-black"
-            >
-              Indulge in premium lifestyle accessories crafted.
-            </dt>
-          </div>
-        </div>
-      </div>
 
-      <div class="flex flex-col-reverse gap-1">
-        <div class="flex items-center gap-4">
-          <img
-            src="img/cutemini4.png"
-            alt="Wellness"
-            class="w-12 h-12 object-cover"
-          >
-          <div>
-            <dd
-              class="text-[0.9rem] font-josefin-sans font-semibold tracking-tight text-black"
-            >
-              WELLNESS PRODUCTS
-            </dd>
-            <dt
-              class="text-[0.9rem] font-josefin-sans text-black"
-            >
-              Relax and rejuvenate with our wellness oils and.
-            </dt>
-          </div>
-        </div>
-      </div>
+
     </dl>
   </div>
 </div>
@@ -1800,6 +2016,163 @@ font-style: normal;
   /* KEEP your existing .new-hero-section, .container, .text, .graphic, etc. CSS here */
   /* No changes needed—font-family is inherited via the .font-josefin-sans utility */
 </style>
+
+  <style>
+    /* container */
+    .k9F3jRzBxLqP_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      margin-bottom: 40px;
+    }
+
+    /* each feature block */
+    .Yp8M2tVcRfWq_block {
+      display: flex;
+      align-items: flex-start;
+      width: 25%;
+      cursor: pointer;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+      transform-origin: center;
+    }
+    .Yp8M2tVcRfWq_block:hover {
+      transform: scale(1.05);
+      /* optional shadow */
+      /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+    }
+
+    /* icon wrapper */
+    .bD5kXn7ZmQcL_iconWrapper {
+      flex: 0 0 auto;
+      width: 55px;
+      height: 55px;
+      margin-right: 16px;
+    }
+    .bD5kXn7ZmQcL_iconWrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* text container */
+    .Qw4Er7TyUiOp_textWrap {
+      flex: 1 1 auto;
+    }
+
+    /* heading + paragraph default & transition */
+    .Qw4Er7TyUiOp_textWrap h3,
+    .Qw4Er7TyUiOp_textWrap p {
+      transition: color 0.3s ease;
+    }
+
+    /* title */
+    .Qw4Er7TyUiOp_textWrap h3 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: "Josefin Sans", sans-serif;
+      margin: 0 0 8px;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    /* description */
+    .Qw4Er7TyUiOp_textWrap p {
+      font-size: 15px;
+      font-family: "Josefin Sans", sans-serif;
+      margin: 0;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    /* hover color */
+    .Yp8M2tVcRfWq_block:hover .Qw4Er7TyUiOp_textWrap h3,
+    .Yp8M2tVcRfWq_block:hover .Qw4Er7TyUiOp_textWrap p {
+      color: #c4b7a6;
+    }
+
+
+
+
+
+
+
+
+
+    @media (max-width: 768px) {
+  /* make container stack vertically */
+  .k9F3jRzBxLqP_container {
+    flex-direction: column;
+    align-items: stretch;   /* let children fill the width */
+    
+  }
+
+  /* each block now full‑width, with some spacing */
+  .Yp8M2tVcRfWq_block {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  /* kill the bottom margin on the last item */
+  .Yp8M2tVcRfWq_block:last-child {
+    margin-bottom: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <section class="k9F3jRzBxLqP_container">
+  
+    <div class="Yp8M2tVcRfWq_block">
+      <div class="bD5kXn7ZmQcL_iconWrapper">
+        <img src="img/cutemini1.png" alt="Corporate Compliance">
+      </div>
+      <div class="Qw4Er7TyUiOp_textWrap">
+        <h3>Corporate Compliance</h3>
+        <p>Ensuring your business adheres to all</p>
+      </div>
+    </div>
+  
+    <div class="Yp8M2tVcRfWq_block">
+      <div class="bD5kXn7ZmQcL_iconWrapper">
+        <img src="img/cutemini2.png" alt="Legal Advisory">
+      </div>
+      <div class="Qw4Er7TyUiOp_textWrap">
+        <h3>Legal Advisory</h3>
+        <p>Strategic counsel on mergers, acquisitions</p>
+      </div>
+    </div>
+  
+    <div class="Yp8M2tVcRfWq_block">
+      <div class="bD5kXn7ZmQcL_iconWrapper">
+        <img src="img/cutemini3.png" alt="Dispute Resolution">
+      </div>
+      <div class="Qw4Er7TyUiOp_textWrap">
+        <h3>Dispute Resolution</h3>
+        <p>Expert representation in arbitration, mediation</p>
+      </div>
+    </div>
+  
+    <div class="Yp8M2tVcRfWq_block">
+      <div class="bD5kXn7ZmQcL_iconWrapper">
+        <img src="img/cutemini4.png" alt="Contract Drafting">
+      </div>
+      <div class="Qw4Er7TyUiOp_textWrap">
+        <h3>Contract Drafting</h3>
+        <p>Precise drafting and review of agreements</p>
+      </div>
+    </div>
+  
+  </section>
 
 
 <style>
@@ -1822,7 +2195,7 @@ display: flex;
 align-items: center; /* Vertically center the content */
 justify-content: center;
 color: black; /* Change text color to black */
-margin-bottom: 50px;
+margin-bottom: -100px;
 }
 
 .new-hero-section::before {
@@ -1913,54 +2286,63 @@ padding-right: 70px;
 
 /* Mobile View */
 @media (max-width: 768px) {
-.new-hero-section {
-min-height: 130vh;
+  .new-hero-section {
+    min-height: 100vh;
+  }
+
+  .content {
+    flex-direction: column;
+    text-align: left; /* ✅ changed from center */
+    justify-content: center;
+    height: 100%;
+    padding: 0 20px;  /* ✅ add horizontal padding globally */
+    box-sizing: border-box;
+  }
+
+  .text {
+    max-width: 100%;
+    padding-top: 0px;
+    font-size: 2.4rem;
+  }
+
+  .text h1 {
+    margin-top: 70px;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    text-align: left; /* ✅ changed from center */
+  }
+  
+  .new-hero-image {
+    min-width: 50vh; /* 140% of viewport height */
+    min-height: auto;
+    margin-bottom: 20px;
+    
+  }
+
+  .text p {
+    text-align: left; /* ✅ changed from center */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+ 
+    
+
+  .text article {
+    text-align: left; /* ✅ changed from center */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
 }
 
-.content {
-flex-direction: column;
-text-align: center;
-justify-content: center;
-height: 100%;
-}
-
-.text {
-max-width: 100%;
-padding-top: 100px;
-font-size: 2.4rem;
-}
-
-.text h1 {
-font-size: 3.5rem;
-line-height: 1.1;
-text-align: center;
-}
-
-.graphic {
-margin-top: 40px;
-}
-
-.text p {
-text-align: center;
-padding: 0 20px;
-margin: 0 auto;
-width: 100%;
-max-width: 90%;
-box-sizing: border-box;
-overflow-wrap: break-word;
-}
-
-.text article {
-text-align: center;
-padding: 0 20px;
-margin: 0 auto;
-width: 100%;
-max-width: 100%;
-box-sizing: border-box;
-overflow-wrap: break-word;
-padding-top: 50px;
-}
-}
 </style>
 
 
@@ -2100,5 +2482,87 @@ navbar.classList.remove('hidden'); // Remove the 'hidden' class
 });
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.services-toggle').forEach(toggle => {
+  const submenu = toggle.nextElementSibling;
+  const arrow   = toggle.querySelector('.arrow');
+
+  // init submenu
+  submenu.classList.remove('active');
+  submenu.style.display = 'none';
+  submenu.style.height  = '0px';
+  submenu.style.opacity = '0';
+
+  // arrow transition & initial (closed) orientation
+  arrow.style.transition = 'transform 0.3s ease-out';
+  arrow.style.transform  = 'rotate(180deg)'; // point down when closed
+
+  toggle.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = submenu.classList.contains('active');
+
+    if (!isOpen) {
+      // === OPEN ===
+      toggle.classList.add('active');
+      submenu.classList.add('active');
+
+      submenu.style.display = 'flex';
+      const fullH = submenu.scrollHeight + 'px';
+
+      submenu.animate(
+        [
+          { height: '0px', opacity: 0 },
+          { height: fullH,  opacity: 1 }
+        ],
+        { duration: 300, easing: 'ease-out' }
+      ).onfinish = () => {
+        submenu.style.height   = fullH;
+        submenu.style.opacity  = '1';
+        submenu.style.overflow = '';
+      };
+
+      arrow.style.transform = 'rotate(0deg)'; // point up when open
+    } else {
+      // === CLOSE ===
+      toggle.classList.remove('active');
+      submenu.classList.remove('active');
+
+      const fullH = submenu.scrollHeight + 'px';
+
+      submenu.animate(
+        [
+          { height: fullH,  opacity: 1 },
+          { height: '0px', opacity: 0 }
+        ],
+        { duration: 200, easing: 'ease-in' }
+      ).onfinish = () => {
+        submenu.style.display = 'none';
+        submenu.style.height  = '0px';
+        submenu.style.opacity = '0';
+      };
+
+      arrow.style.transform = 'rotate(180deg)'; // back to down when closed
+    }
+  });
+});
+</script>
+
+
+
+
+
+
 </body>
 </html>

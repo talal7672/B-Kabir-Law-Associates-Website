@@ -110,10 +110,15 @@
     margin-left: 20%;
   }
 
-  :root {
-    --bar-width: 350px;
-    
-  }
+:root {
+  --submenu-max-height: 500px;      /* big enough to show all links */
+  --submenu-duration: 0.3s;
+  --submenu-ease: ease;
+}
+
+.dropdown-menu .services-submenu::after {
+  content: none !important;
+}
 
   .dropdown-menu {
     position: fixed;
@@ -175,9 +180,7 @@
   .dropdown-menu.active {
     transform: translateX(0);
   }
-  .dropdown-menu .services-submenu a {
-    margin-bottom: 10px;
-  }
+
 }
 
 
@@ -187,27 +190,10 @@
 
 
 
-  .dropdown-menu a::before, .dropdown-menu a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: var(--bar-width);
-    height: 0.5px;
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .dropdown-menu a::before {
-    top: 0px;
-    
-  }
-
-  .dropdown-menu a::after {
-    bottom: 0px;
-    
-  }
+ 
 
   .dropdown-menu .live-location {
-    margin-top: 2rem;
+    margin-top: 3rem;
     background-color: #DDDDDD;
     
     color: #fff;
@@ -508,10 +494,86 @@ background-color: transparent; /* Transparent background */
   align-items: center;
   font-family: "Josefin Sans", sans-serif;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 19px;
   letter-spacing: 4px;
   padding: 1.7rem 1rem; /* vertical | horizontal */
+  font-weight: 400;
 }
+
+/* add this to your existing .services-toggle rule */
+.dropdown-menu .services-toggle {
+  /* …existing rules… */
+  transition: color 0.3s ease;
+}
+
+/* keep arrow white */
+.dropdown-menu .services-toggle .arrow {
+  color: #fff;
+}
+
+/* hover: text → grey */
+.dropdown-menu .services-toggle:hover {
+  color: #B1976B;
+}
+
+/* keep arrow white on hover */
+/* remove all ::before/::after bars on toggles and submenus */
+.dropdown-menu .services-toggle::before,
+.dropdown-menu .services-toggle::after,
+.dropdown-menu .services-submenu::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ─── Reset any old pseudo‐element bars ─── */
+.dropdown-menu .services-toggle::before,
+.dropdown-menu .services-toggle::after,
+.dropdown-menu .services-submenu::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ─── 1) Bar above the very first toggle (Firm) ─── */
+.dropdown-menu .services-item:first-of-type .services-toggle {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ─── 2) Bars between every toggle ─── */
+.dropdown-menu .services-toggle {
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ─── 3) Remove the toggle’s own bottom‐border when it’s active ─── */
+.dropdown-menu .services-toggle.active {
+  border-bottom: none;
+}
+
+/* ─── 4) Hide all submenus by default ─── */
+.dropdown-menu .services-submenu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  border-bottom: none;
+}
+
+/* ─── 5) When open, expand the submenu and give it a bottom‐border ─── */
+.dropdown-menu .services-toggle.active + .services-submenu {
+  max-height: 800px;  /* adjust as needed */
+  opacity: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  
+
+}
+
+
+
+
+
+
+
+
+
 
 /* Top + bottom bars on each toggle */
 .dropdown-menu .services-toggle::before,
@@ -535,11 +597,24 @@ background-color: transparent; /* Transparent background */
   display: none;
 }
 
+/* 1) Kill the bottom bar on every toggle */
+.dropdown-menu .services-toggle::after {
+  display: none !important;
+}
+
+/* 2) Re-enable it only on the last .services-item (Personell) */
+.dropdown-menu .services-item:last-of-type .services-toggle::after {
+  display: block !important;
+}
+
+
+
+
 /* ─── Arrow “V” ─── */
 .dropdown-menu .services-toggle .arrow {
   position: relative;
-  width: 10px;
-  height: 6px;
+  width: 15px;
+  height: 10px;
   margin-left: 8px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
@@ -575,12 +650,27 @@ background-color: transparent; /* Transparent background */
   width: 100%;
 }
 
-/* Submenu links styling */
+/* base styling with transition */
 .dropdown-menu .services-submenu a {
   padding: 25px 0 0;
-  font-size: 15px;
+  font-size: 19px;
   letter-spacing: 3px;
+  font-weight: 400;
+  margin-left: 15px;
+
+  /* NEW: smooth color (and optional indent) transition */
+  transition: 
+    color 0.3s ease,
+    margin-left 0.3s ease;
 }
+
+/* example hover state */
+.dropdown-menu .services-submenu a:hover {
+  color: #B1976B;       /* your gold accent */
+  margin-left: 20px;    /* slight slide on hover, optional */
+}
+
+
 
 /* Kill any bars on the individual submenu links */
 .dropdown-menu .services-submenu a::before,
@@ -594,25 +684,44 @@ background-color: transparent; /* Transparent background */
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 1.9rem;  /* space before the bottom bar */
-  margin-bottom: 0;        /* tweak if you want extra gap below */
+  padding-bottom: 2rem;       /* ← more space under last item */
+  margin-bottom: 0.5rem;
+  margin-top: -25px;       /* optional extra gap below the bar */
 }
 
 /* Draw a bottom bar under the open submenu block */
-.dropdown-menu .services-submenu.active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: var(--bar-width);
-  height: 0.5px;
-  background-color: rgba(255,255,255,0.2);
+.dropdown-menu .services-item:nth-of-type(3) .services-submenu.active::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 1px !important;
+  background-color: rgba(255,255,255,0.2) !important;
+  display: block !important;
+  margin-bottom: -10px !important;
+}
+
+.dropdown-menu .services-submenu {
+  position: relative !important;
 }
 
 /* push all submenu items down a bit */
 .dropdown-menu .services-submenu {
   padding-bottom: 1.9rem !important; /* or whatever value matches your .services-toggle padding */
 }
+
+
+
+
+.dropdown-menu .services-submenu.active a:last-child {
+  margin-bottom: -7px !important;
+}
+
+
+
+
+
 
 
 
@@ -2468,6 +2577,12 @@ padding-right: 70px;
   }
 </script>
 
+
+
+
+
+
+
 <script>
   // Select your navbar
 const navbar = document.querySelector('.navbar');
@@ -2486,12 +2601,6 @@ navbar.classList.remove('hidden'); // Remove the 'hidden' class
 });
 
 </script>
-
-
-
-
-
-
 
 
 

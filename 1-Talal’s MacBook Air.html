@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600;1,700;1,800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet"> 
+  <link href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+  <title>B Kabir & Law Associates</title>
+
+  </head>
+
+<!-- HTML -->
+<!-- Replace your current <section id="industries">…</section> with this: -->
+
+<body>
+<section id="industries" class="industries-section_firm_industry">
+  <div class="container_firm_industry">
+    <div class="industries-content_firm_industry">
+      
+      <!-- Left column: 5 boxes -->
+      <div class="left-column_firm_industry">
+        <div class="industry-item_firm_industry">Manufacturing &amp; Industry</div>
+        <div class="industry-item_firm_industry">Real Estate &amp; Contraction</div>
+        <div class="industry-item_firm_industry">Logistics &amp; Trade</div>
+        <div class="industry-item_firm_industry">Banking &amp; Finance</div>
+        <div class="industry-item_firm_industry">Science &amp; Healthcare</div>
+      </div>
+
+      <!-- Thin vertical bar -->
+      <div class="divider_firm_industry"></div>
+
+      <!-- Right column: 2 boxes -->
+      <div class="right-column_firm_industry">
+        <div class="industry-item_firm_industry">Trust/Foundations</div>
+        <div class="industry-item_firm_industry">Hospitality &amp; Leisure</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<style>
+/* Container & overall padding */
+.industries-section_firm_industry {
+  padding: 4rem 2rem;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  color: #1e2a38;
+}
+
+.container_firm_industry {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 3-column layout */
+.industries-content_firm_industry {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  column-gap: 2rem;
+  align-items: start;
+}
+
+/* Divider styling */
+.divider_firm_industry {
+  background-color: #e5e8ec;
+  width: 1px;
+  height: 100%;
+  justify-self: center;
+}
+
+/* Column stacks */
+.left-column_firm_industry,
+.right-column_firm_industry {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* The boxes */
+.industry-item_firm_industry {
+  background: #161616;
+  color: #fff;
+  padding: 1.4rem 1.5rem;
+  border-radius: 4px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+/* Hover lift + shadow */
+.industry-item_firm_industry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Mobile: single column, hide divider */
+@media (max-width: 768px) {
+  .industries-content_firm_industry {
+    grid-template-columns: 1fr;
+  }
+  .divider_firm_industry {
+    display: none;
+  }
+  .left-column_firm_industry,
+  .right-column_firm_industry {
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+
+</style>
+
+</body>
+
+</html>

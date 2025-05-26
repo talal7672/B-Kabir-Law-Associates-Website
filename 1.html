@@ -22,143 +22,158 @@
 <!-- Replace your current <section id="industries">…</section> with this: -->
 
 <body>
-<section class="BKLA_features_uniqueness_section">
-  <div class="BKLA_features_uniqueness_container">
+<!-- Section Title -->
+<h2 class="BKLA_features_uniqueness_title">INDUSTRIES</h2>
 
-    <!-- Section Title -->
-    <h2 class="BKLA_features_uniqueness_title">WHY CLIENTS LIKE US</h2>
-
-    <!-- Cards Grid -->
-    <div class="BKLA_features_uniqueness_grid">
+<section id="industries" class="industries-section_firm_industry">
+  <div class="container_firm_industry">
+    <div class="industries-content_firm_industry">
       
-      <!-- Card 1 -->
-      <div class="BKLA_feature_item">
-        <div class="BKLA_feature_number">01</div>
-        <h3 class="BKLA_feature_heading">EXPERIENCE</h3>
-        <p class="BKLA_feature_text">
-          Our legal team has over 200 years of combined experience in family law. We can handle a wide range of complex and high-conflict cases.
-        </p>
+      <!-- Left column group -->
+      <div class="column-group_firm_industry">
+        <h3 class="industry-column-title">EXPERTISE</h3>
+<div class="left-column_firm_industry">
+  <a href="practice1.html" class="industry-item_firm_industry">Taxation - Individual</a>
+  <a href="taxation-company.html" class="industry-item_firm_industry">Taxation - Company</a>
+  <a href="taxation-firm-trust.html" class="industry-item_firm_industry">Taxation - Firm, Trust & Foundation</a>
+  <a href="retainer-secretary.html" class="industry-item_firm_industry">Retainer & Secretary Services</a>
+  <a href="vat-services.html" class="industry-item_firm_industry">VAT Services</a>
+  <a href="accounting-audit.html" class="industry-item_firm_industry">Accounting & Audit</a>
+  <a href="corporate-finance.html" class="industry-item_firm_industry">Corporate Finance</a>
+  <a href="rjsc-company-law.html" class="industry-item_firm_industry">RJSC & Company Law</a>
+  <a href="land-services.html" class="industry-item_firm_industry">Land Services</a>
+  <a href="pre-ipo-services.html" class="industry-item_firm_industry">Pre IPO Services</a>
+  <a href="hrm-labor-law.html" class="industry-item_firm_industry">HRM & Labor Law</a>
+  <a href="merger-acquisition.html" class="industry-item_firm_industry">Merger & Acquisition</a>
+  <a href="license-services.html" class="industry-item_firm_industry">License Services</a>
+</div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="BKLA_feature_item">
-        <div class="BKLA_feature_number">02</div>
-        <h3 class="BKLA_feature_heading">LOCATION</h3>
-        <p class="BKLA_feature_text">
-          Our office is conveniently located in downtown Toronto, within steps of the Court House, City Hall parking and subway station.
-        </p>
-      </div>
+      <!-- Thin vertical bar -->
+      <div class="divider_firm_industry"></div>
 
-      <!-- Card 3 -->
-      <div class="BKLA_feature_item">
-        <div class="BKLA_feature_number">03</div>
-        <h3 class="BKLA_feature_heading">FLEXIBILITY</h3>
-        <p class="BKLA_feature_text">
-          We can work with clients in person at our office or virtually for those who prefer to work with us remotely. The choice is yours.
-        </p>
+      <!-- Right column group -->
+      <div class="column-group_firm_industry">
+        <h3 class="industry-column-title">Industries</h3>
+        <div class="right-column_firm_industry">
+          <div class="industry-item_firm_industry">Manufacturing & Industry</div>
+          <div class="industry-item_firm_industry">Real Estate & Construction</div>
+          <div class="industry-item_firm_industry">Logistics & Trade</div>
+          <div class="industry-item_firm_industry">Banking & Finance</div>
+          <div class="industry-item_firm_industry">Science & Healthcare</div>
+          <div class="industry-item_firm_industry">Trust/Foundations</div>
+          <div class="industry-item_firm_industry">Hospitality &amp; Leisure</div>
+        </div>
       </div>
-
-      <!-- Card 4 -->
-      <div class="BKLA_feature_item">
-        <div class="BKLA_feature_number">04</div>
-        <h3 class="BKLA_feature_heading">PEOPLE</h3>
-        <p class="BKLA_feature_text">
-          We only hire very ambitious and high-achieving lawyers who have dedicated their legal careers to family law, exclusively.
-        </p>
-      </div>
-
-      <!-- add more .BKLA_feature_item here as needed -->
 
     </div>
   </div>
 </section>
 
-
-
-
 <style>
-/* === Section Wrapper === */
-.BKLA_features_uniqueness_section {
-  background: transparent;   /* remove black background */
-  padding: 4rem 2rem;
-  font-family: 'Josefin Sans', sans-serif;
+/* Hide the original “INDUSTRIES” main heading */
+.BKLA_features_uniqueness_title {
+  display: none;
 }
 
-/* Centered inner container */
-.BKLA_features_uniqueness_container {
+/* Industries Section Styles */
+.industries-section_firm_industry {
+  padding: 4rem 2rem;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+  color: #1e2a38;
+  margin-top: -50px;
+}
+
+.container_firm_industry {
   max-width: 900px;
   margin: 0 auto;
 }
 
-/* === Title === */
-.BKLA_features_uniqueness_title {
-  text-align: center;
+.industries-content_firm_industry {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  column-gap: 4.5rem;
+  align-items: start;
+}
+
+/* Divider styling: push down by the heading’s bottom margin (2rem) */
+.divider_firm_industry {
+  background-color: #e5e8ec;
+  width: 1px;
+  margin-top: 5.5rem;            /* push it down past the heading */
+  height: calc(100% - 5.5rem);   /* make it fill to the bottom */
+  justify-self: center;
+}
+
+/* Column groups (with headings) */
+.column-group_firm_industry {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Sub-column headings matching your main heading aesthetic */
+.industry-column-title {
+  text-align: left;
+  font-family: "Josefin Sans", sans-serif;
   font-size: 1.25rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  margin: 0 auto 2rem;
+  margin: 0 0 2rem;
   position: relative;
-  color: #454545;  /* dark text on white */
+  color: #454545;
 }
 
-/* Underline accent */
-.BKLA_features_uniqueness_title::after {
+/* Underline accent — left-aligned now */
+.industry-column-title::after {
   content: '';
   display: block;
   width: 40px;
   height: 2px;
-  background: #CDB699;  /* sand-tone accent */
-  margin: 0.5rem auto 0;
+  background: #CDB699;
+  /* remove auto centering and align to left edge */
+  margin: 0.5rem 0 0 0;
 }
 
-/* === Cards Grid (2 per row) === */
-.BKLA_features_uniqueness_grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 9px;
+/* Column stacks */
+.left-column_firm_industry,
+.right-column_firm_industry {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-/* === Individual Card === */
-.BKLA_feature_item {
-  background: #FAFAFA;   /* keep cards dark */
-  padding: 3.2rem;
+/* Industry item boxes */
+.industry-item_firm_industry {
+  background: #FAFAFA;
+  color: #242424;
+  padding: 1.5rem;
   border-radius: 4px;
-  position: relative;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 1px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
-/* Number badge (top-right) */
-.BKLA_feature_number {
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
-  font-size: 1.2rem;
-  color: #313131;
+.industry-item_firm_industry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-/* Card Heading */
-.BKLA_feature_heading {
-  margin: 0 0 0.75rem;
-  font-size: 1.20rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: #313131;
-}
-
-/* Card Text */
-.BKLA_feature_text {
-  margin: 0;
-  line-height: 1.9;
-  color:#313131;
-  font-size: 1.15rem;
-  font-weight: 300;
-  letter-spacing: 4px;
-}
-
-/* === Mobile: stack to one column === */
-@media (max-width: 600px) {
-  .BKLA_features_uniqueness_grid {
+/* Responsive: single column layout */
+@media (max-width: 768px) {
+  .industries-content_firm_industry {
     grid-template-columns: 1fr;
+  }
+  .divider_firm_industry {
+    display: none;
+  }
+  .left-column_firm_industry,
+  .right-column_firm_industry {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -166,6 +181,8 @@
 
 
 </style>
+
+
 
 </body>
 

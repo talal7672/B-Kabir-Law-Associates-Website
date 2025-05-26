@@ -2131,64 +2131,80 @@ document.querySelectorAll('.services-toggle').forEach(toggle => {
   const submenu = toggle.nextElementSibling;
   const arrow   = toggle.querySelector('.arrow');
 
-  // init submenu
+  // ─── INIT ───
   submenu.classList.remove('active');
-  submenu.style.display = 'none';
-  submenu.style.height  = '0px';
-  submenu.style.opacity = '0';
+  submenu.style.display         = 'none';
+  submenu.style.transformOrigin = 'top';
+  submenu.style.transform       = 'scaleY(0)';
+  submenu.style.opacity         = '0';
+  submenu.style.overflow        = 'hidden';
+  submenu.style.willChange      = 'transform, opacity';  // GPU hint
 
-  // arrow transition & initial (closed) orientation
-  arrow.style.transition = 'transform 0.3s ease-out';
-  arrow.style.transform  = 'rotate(180deg)'; // point down when closed
+  arrow.style.transition = 'transform 0.3s ease';
+  arrow.style.transform  = 'rotate(180deg)';  // down by default
 
   toggle.addEventListener('click', e => {
     e.stopPropagation();
     const isOpen = submenu.classList.contains('active');
 
     if (!isOpen) {
-      // === OPEN ===
+      // ─── OPEN ───
       toggle.classList.add('active');
       submenu.classList.add('active');
 
       submenu.style.display = 'flex';
-      const fullH = submenu.scrollHeight + 'px';
-
+      submenu.getBoundingClientRect();  // force style flush
+      
       submenu.animate(
         [
-          { height: '0px', opacity: 0 },
-          { height: fullH,  opacity: 1 }
+          { transform: 'scaleY(0)', opacity: 0 },
+          { transform: 'scaleY(1)', opacity: 1 }
         ],
-        { duration: 300, easing: 'ease-out' }
+        {
+          duration: 400,
+          easing: 'cubic-bezier(.25,.8,.25,1)',
+          fill: 'forwards'
+        }
       ).onfinish = () => {
-        submenu.style.height   = fullH;
-        submenu.style.opacity  = '1';
-        submenu.style.overflow = '';
+        submenu.style.transform  = 'scaleY(1)';
+        submenu.style.opacity    = '1';
+        submenu.style.overflow   = '';
+        submenu.style.willChange = 'auto';
       };
 
-      arrow.style.transform = 'rotate(0deg)'; // point up when open
+      arrow.style.transform = 'rotate(0deg)';  // up
+
     } else {
-      // === CLOSE ===
+      // ─── CLOSE ───
       toggle.classList.remove('active');
       submenu.classList.remove('active');
-
-      const fullH = submenu.scrollHeight + 'px';
+      submenu.style.overflow   = 'hidden';
+      submenu.style.willChange = 'transform, opacity';
 
       submenu.animate(
         [
-          { height: fullH,  opacity: 1 },
-          { height: '0px', opacity: 0 }
+          { transform: 'scaleY(1)', opacity: 1 },
+          { transform: 'scaleY(0)', opacity: 0 }
         ],
-        { duration: 200, easing: 'ease-in' }
+        {
+          duration: 300,
+          easing: 'cubic-bezier(.55,0,.1,1)',
+          fill: 'forwards'
+        }
       ).onfinish = () => {
-        submenu.style.display = 'none';
-        submenu.style.height  = '0px';
-        submenu.style.opacity = '0';
+        submenu.style.display    = 'none';
+        submenu.style.transform  = 'scaleY(0)';
+        submenu.style.opacity    = '0';
+        submenu.style.overflow   = '';
+        submenu.style.willChange = 'auto';
       };
 
-      arrow.style.transform = 'rotate(180deg)'; // back to down when closed
+      arrow.style.transform = 'rotate(180deg)';  // back down
     }
   });
 });
+
+
 </script>
 
 

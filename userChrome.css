@@ -1,38 +1,21 @@
-:root {
-  --zen-colors-tertiary: transparent !important;
-  --zen-settings-secondary-background: transparent !important;
+window, #main-window, #navigator-toolbox, #TabsToolbar, #sidebar-box {
+  background-color: rgba(41,47,52,0.2) !important;
+  -moz-appearance: none !important;
+  background-image: none !important;
 }
 
-/* Main wrapper blur */
-#zen-main-app-wrapper,
-#sidebar,
-#TabsToolbar,
 #nav-bar {
-  background-color: rgba(30, 30, 30, 0.2) !important;
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
-  border: none !important;
+  background-color: rgba(33,37,41,0.5) !important;
 }
 
-/* Tab styling */
+.tab-background[selected="true"] {
+  background: rgba(33,37,41,0.3) !important;
+  -moz-appearance: none !important;
+  background-image: none !important;
+}
+
 .tab-background {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border-radius: 12px !important;
-  margin: 2px 4px !important;
-  border: none !important;
-}
-
-/* Hide ugly borders */
-.titlebar-spacer, .toolbar-items, .titlebar-buttonbox-container {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* Optional: remove window chrome padding */
-#navigator-toolbox::after {
-  border: none !important;
-  background: transparent !important;
+  background: rgba(0,0,0,0) !important;
+  border: 1px rgba(0,0,0,0.2) solid !important;
+  border-radius: 6px !important;
 }

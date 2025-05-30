@@ -110,10 +110,15 @@
     margin-left: 20%;
   }
 
-  :root {
-    --bar-width: 350px;
-    
-  }
+:root {
+  --submenu-max-height: 500px;      /* big enough to show all links */
+  --submenu-duration: 0.3s;
+  --submenu-ease: ease;
+}
+
+.dropdown-menu .services-submenu::after {
+  content: none !important;
+}
 
   .dropdown-menu {
     position: fixed;
@@ -132,6 +137,7 @@
     z-index: 9999;
     overflow-y: auto;
     padding-top: 200px;
+    box-sizing: border-box;
   }
 
   .dropdown-menu.active {
@@ -152,41 +158,42 @@
     letter-spacing: 4px;
   }
 
-  @media (max-width: 767.98px) {
-.dropdown-menu {
-  padding-left: 105px;
-}
-
-}
-
-
-
-
-
-
-
-
-  .dropdown-menu a::before, .dropdown-menu a::after {
-    content: '';
-    position: absolute;
+/* mobile overrides */
+@media (max-width: 767.98px) {
+  .dropdown-menu {
+    /* span the entire viewport */
     left: 0;
-    width: var(--bar-width);
-    height: 0.3px;
-    background-color: rgba(255, 255, 255, 0.2);
+    right: 0;
+    width: auto;       /* override the 500px */
+    height: 100%;
+    
+    /* your top/bottom can stay the same */
+    padding-left: 2.5rem; /* equal 2rem padding on left + right */
+    padding-right: 2rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    
+    /* for hiding/showing, you can move it off-screen by 100% */
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .dropdown-menu.active {
+    transform: translateX(0);
   }
 
-  .dropdown-menu a::before {
-    top: 0px;
-    
-  }
+}
 
-  .dropdown-menu a::after {
-    bottom: 0px;
-    
-  }
+
+
+
+
+
+
+
+ 
 
   .dropdown-menu .live-location {
-    margin-top: 2rem;
+    margin-top: 3rem;
     background-color: #DDDDDD;
     
     color: #fff;
@@ -196,9 +203,9 @@
     transition: background-color 0.3s;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     color: black;
-    font-size: 0.8rem;
+    font-size: 16px;
   }
 
   .dropdown-menu .live-location:hover {
@@ -233,9 +240,9 @@
   }
 
   .hero h1 {
-font-size: 4.5rem;
-font-weight: 200;
-letter-spacing: 20px;
+font-size: 70px;
+font-weight: 300;
+letter-spacing: 17px;
 position: relative !important;
 font-family: 'Josefin Sans', sans-serif;
 margin-top: -400px;
@@ -353,7 +360,7 @@ word-wrap: break-word;
     /* Media Query */
     @media (max-width: 768px) {
       .extra-text h3 {
-        font-size: 20px;
+        font-size: 27px;
         font-weight: 700;
       }
       .extra-text {
@@ -361,14 +368,14 @@ word-wrap: break-word;
       }
     }
     
-    .extra-text p9 {
+    .extra-text p {
       font-size: 15px;
       font-family: 'Josefin Sans', sans-serif;
       color: #ffffff;
       margin-bottom: 3px; /* Adjust bottom margin */
     }
     
-    .extra-text p9:last-child {
+    .extra-text p:last-child {
       margin-bottom: 30px !important; /* Adjust bottom margin for the last paragraph */
     }
     
@@ -434,7 +441,7 @@ position: absolute;
 bottom: 0;
 width: 100%;
 height: 50vh;
-background-color: rgba(0, 0, 0, 0.7);
+background-color: #121518;
 color: white;
 display: none; /* Hide it initially */
 justify-content: center;
@@ -458,7 +465,8 @@ flex-direction: column;
 
 z-index: 2;
 
-padding-bottom: 20px;
+padding-bottom: 0px;
+
 }
 
 
@@ -467,7 +475,274 @@ padding-bottom: 20px;
 height: 40vh; /* Extra scroll space */
 background-color: transparent; /* Transparent background */
 }
+
+
+:root {
+  --bar-width: 350px;
+}
+
+/* ─── Services wrapper ─── */
+.dropdown-menu .services-item {
+  width: 100%;
+}
+
+/* ─── Toggle (Firm, Services, Personell) ─── */
+.dropdown-menu .services-toggle {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+  font-size: 19px;
+  letter-spacing: 4px;
+  padding: 1.7rem 1rem; /* vertical | horizontal */
+  font-weight: 400;
+}
+
+/* add this to your existing .services-toggle rule */
+.dropdown-menu .services-toggle {
+  /* …existing rules… */
+  transition: color 0.3s ease;
+}
+
+/* keep arrow white */
+.dropdown-menu .services-toggle .arrow {
+  color: #fff;
+}
+
+/* hover: text → grey */
+.dropdown-menu .services-toggle:hover {
+  color: #B1976B;
+}
+
+/* keep arrow white on hover */
+/* remove all ::before/::after bars on toggles and submenus */
+.dropdown-menu .services-toggle::before,
+.dropdown-menu .services-toggle::after,
+.dropdown-menu .services-submenu::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ─── Reset any old pseudo‐element bars ─── */
+.dropdown-menu .services-toggle::before,
+.dropdown-menu .services-toggle::after,
+.dropdown-menu .services-submenu::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ─── 1) Bar above the very first toggle (Firm) ─── */
+.dropdown-menu .services-item:first-of-type .services-toggle {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ─── 2) Bars between every toggle ─── */
+.dropdown-menu .services-toggle {
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ─── 3) Remove the toggle’s own bottom‐border when it’s active ─── */
+.dropdown-menu .services-toggle.active {
+  border-bottom: none;
+}
+
+/* ─── 4) Hide all submenus by default ─── */
+.dropdown-menu .services-submenu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  border-bottom: none;
+}
+
+/* ─── 5) When open, expand the submenu and give it a bottom‐border ─── */
+.dropdown-menu .services-toggle.active + .services-submenu {
+  max-height: 800px;  /* adjust as needed */
+  opacity: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+/* Top + bottom bars on each toggle */
+.dropdown-menu .services-toggle::before,
+.dropdown-menu .services-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: var(--bar-width);
+  height: 0.5px;
+  background-color: rgba(255,255,255,0.2);
+}
+.dropdown-menu .services-toggle::before {
+  top: 0;
+}
+.dropdown-menu .services-toggle::after {
+  bottom: 0;
+}
+
+/* Hide the toggle’s bottom bar when open */
+.dropdown-menu .services-toggle.active::after {
+  display: none;
+}
+
+/* 1) Kill the bottom bar on every toggle */
+.dropdown-menu .services-toggle::after {
+  display: none !important;
+}
+
+/* 2) Re-enable it only on the last .services-item (Personell) */
+.dropdown-menu .services-item:last-of-type .services-toggle::after {
+  display: block !important;
+}
+
+
+
+
+/* ─── Arrow “V” ─── */
+.dropdown-menu .services-toggle .arrow {
+  position: relative;
+  width: 15px;
+  height: 10px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.dropdown-menu .services-toggle .arrow::before,
+.dropdown-menu .services-toggle .arrow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: currentColor;
+}
+.dropdown-menu .services-toggle .arrow::before {
+  left: 0;
+  transform-origin: bottom left;
+  transform: rotate(45deg);
+}
+.dropdown-menu .services-toggle .arrow::after {
+  right: 0;
+  transform-origin: bottom right;
+  transform: rotate(-45deg);
+}
+.dropdown-menu .services-toggle.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* ─── Submenu container ─── */
+.dropdown-menu .services-submenu {
+  display: none;
+  position: relative;      /* for its own ::after bar */
+  flex-direction: column;
+  width: 100%;
+}
+
+/* base styling with transition */
+.dropdown-menu .services-submenu a {
+  padding: 25px 0 0;
+  font-size: 19px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  margin-left: 15px;
+
+  /* NEW: smooth color (and optional indent) transition */
+  transition: 
+    color 0.3s ease,
+    margin-left 0.3s ease;
+}
+
+/* example hover state */
+.dropdown-menu .services-submenu a:hover {
+  color: #B1976B;       /* your gold accent */
+  margin-left: 20px;    /* slight slide on hover, optional */
+}
+
+
+
+/* Kill any bars on the individual submenu links */
+.dropdown-menu .services-submenu a::before,
+.dropdown-menu .services-submenu a::after {
+  content: none;
+  display: none;
+}
+
+/* ─── When submenu is open ─── */
+.dropdown-menu .services-submenu.active {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 2rem;       /* ← more space under last item */
+  margin-bottom: 0.5rem;
+  margin-top: -25px;       /* optional extra gap below the bar */
+}
+
+/* Draw a bottom bar under the open submenu block */
+.dropdown-menu .services-item:nth-of-type(3) .services-submenu.active::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 1px !important;
+  background-color: rgba(255,255,255,0.2) !important;
+  display: block !important;
+  margin-bottom: -10px !important;
+}
+
+.dropdown-menu .services-submenu {
+  position: relative !important;
+}
+
+/* push all submenu items down a bit */
+.dropdown-menu .services-submenu {
+  padding-bottom: 1.9rem !important; /* or whatever value matches your .services-toggle padding */
+}
+
+
+
+
+.dropdown-menu .services-submenu.active a:last-child {
+  margin-bottom: -7px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
+
+
 
 
   </head>
@@ -476,44 +751,99 @@ background-color: transparent; /* Transparent background */
 
 <body>
 
-    <header class="navbar">
-        <div class="logo">
-          <img src="img/logoW.png" alt="Company Logo">
-          <span>B Kabir & Law Associates</span>
-        </div>
-        <button class="hamburger" onclick="toggleMenu()">
-          <div></div>
-          <div class="middle"></div>
-          <div></div>
-        </button>
-      </header>
-      
-      <div class="dropdown-menu" id="dropdown-menu">
-        <button class="close-btn" onclick="toggleMenu()">
-          <div></div>
-          <div></div>
-        </button>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="practice1.html">Services</a>
-        <a href="attorney.html">Attorney</a>
-        <a href="members.html">Associates</a>
-        <a href="contact.html">Contact</a>
-        <button class="live-location" onclick="window.open('https://maps.app.goo.gl/5n88uqXQPzYyFhso7?g_st=ic')">Live Location</button>
-      </div> 
+<header class="navbar">
+<div class="logo">
+  <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+    <img src="img/logoW.png" alt="Company Logo">
+    <span>B Kabir &amp; Law Associates</span>
+  </a>
+</div>
+  <button class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div class="middle"></div>
+    <div></div>
+  </button>
+</header>
+
+<div class="dropdown-menu" id="dropdown-menu">
+  <button class="close-btn" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+  </button>
+
+  <!-- Firm section -->
+  <div class="services-item">
+    <div class="services-toggle">
+      Firm
+      <span class="arrow"></span>
+    </div>
+    <div class="services-submenu">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- Services section -->
+  <div class="services-item">
+    <div class="services-toggle">
+      Services
+      <span class="arrow"></span>
+    </div>
+    <div class="services-submenu">
+      <a href="practice1.html">Taxation – Individual</a>
+      <a href="service2.html">Taxation – Company</a>
+      <a href="service3.html">Taxation – Firm, Trust, Foundation</a>
+      <a href="service4.html">Retainer &amp; Secretary Services</a>
+      <a href="service5.html">VAT Services</a>
+      <a href="service6.html">Accounting &amp; Audit</a>
+      <a href="service7.html">RJSC &amp; Company Law</a>
+      <a href="service8.html">Pre IPO Services</a>
+      <a href="service9.html">Land Services</a>
+      <a href="service10.html">License</a>
+      <a href="service11.html">HRM &amp; Labor Law</a>
+      <a href="service12.html">Merger &amp; Acquisition</a>
+    </div>
+  </div>
+
+  <!-- Personnel section -->
+  <div class="services-item">
+    <div class="services-toggle">
+      Personell
+      <span class="arrow"></span>
+    </div>
+    <div class="services-submenu">
+      <a href="attorney.html">Attorney</a>
+      <a href="members.html">Associates</a>
+    </div>
+  </div>
+
+  <button class="live-location"
+          onclick="window.open('https://maps.app.goo.gl/5n88uqXQPzYyFhso7?g_st=ic')">
+    Live Location
+  </button>
+</div>
+
+
       
    
   
 
     <div class="wrapper">
         <section class="hero">
-          <h1>TAXATION - INDIVIDUAL<br> <span class="typed-text"></span></h1>
-          <i class="fas fa-chevron-down"></i>
+          <h1>
+  <span style="font-family:'Josefin Sans',sans-serif; font-size:1.2rem; letter-spacing:4px; color:#ffffff; text-transform:uppercase; display:block; text-align:center; font-weight:300; margin-bottom:0.5rem;">
+    SERVICES
+  </span>
+  INDIVIDUAL TAX<br>
+  <span class="typed-text"></span>
+</h1>
+          <i class="fas fa-chevron-down"></i> 
           <div class="extra-text">
+             
             <h3>B. KABIR & LAW ASSOCIATES</h3>
-            <p9><i class="fa fa-map-marker-alt"></i>&nbsp;30 Topkhana Road, Amina Vista, Flat C-2N</p9>
+            <p><i class="fa fa-map-marker-alt"></i>&nbsp;30 Topkhana Road, Amina Vista, Flat C-2N</p>
 
-            <p9><i class="fa fa-phone-alt"></i>&nbsp; +880 1715016 746</p9>
+            <p><i class="fa fa-phone-alt"></i>&nbsp; +880 1715016 746</p>
             <div class="footer-social-media">
                 <a href="https://facebook.com" class="social-icon" data-icon="facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://twitter.com" class="social-icon" data-icon="twitter"><i class="fab fa-twitter"></i></a>
@@ -528,7 +858,6 @@ background-color: transparent; /* Transparent background */
 
 
         </section>
-
         <style>
 /* Style the down-arrow icon */
 .fas.fa-chevron-down {
@@ -570,9 +899,9 @@ background-color: transparent; /* Transparent background */
     transform: translate(-50%, calc(-50% - 10px));
   }
 }
-
           
-          </style> 
+          </style>
+      
       
 <div class="contact-section">
 
@@ -627,41 +956,56 @@ background-color: transparent; /* Transparent background */
 
 /* Headings & text */
 .service-detail h2 {
-  font-size: 15px;
+  font-size: 19px;
   margin-bottom: 10px;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 300;
   color: #555855;
+  letter-spacing: 2px;
 }
 
 .service-detail p {
   font-size: 22px;
   line-height: 1.2;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   color: #B1976B;
   text-transform: uppercase;
   margin: 30px 0;
   margin-top: 50px;
+  letter-spacing: 4.4px;
 }
+
+.service-detail p::after {
+  content: "";
+  display: block;
+  width: 50px;           /* Adjust as needed */
+  height: 2px;           /* Thickness of the bar */
+  background: #cccccc;   /* Change color as needed */
+  margin-top: 25px;      /* Space between text and bar */
+  border-radius: 2px;    /* Optional for rounded ends */
+}
+
 
 .service-detail p1 {
   display: block;  /* nonstandard tag, treated as block */
-  font-size: 18px;
-  line-height: 1.8;
+  font-size: 20px;
+  line-height: 2;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: #000;
   margin-bottom: 30px;
+  letter-spacing: .2rem;
 }
 
 .service-detail article {
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 20px;
+  line-height: 2;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: #555;
   margin-top: 15px;
+  letter-spacing: .2rem;
 }
 
       /* New title for Practice Areas */
@@ -713,15 +1057,42 @@ background-color: transparent; /* Transparent background */
 
 /* Accordion Styles */
 .accordion-container {
-margin-top: 20px;
+  /* split into 2 columns */
+  column-count: 2;
+  column-gap: 150px;          /* space between columns */
+  position: relative;        /* for the bar pseudo */
+}
+
+/* prevent items being split, make them full-width of the column */
+.accordion-container .accordion-item {
+  display: inline-block;     /* inline-block to respect column flow */
+  width: 100%;
+  margin-bottom: -5px;
+}
+
+/* force a break to the second column starting with item #9 */
+.accordion-container .accordion-item:nth-child(9) {
+  break-before: column;             /* modern spec */
+  -webkit-column-break-before: always; /* WebKit fallback */
+}
+
+/* draw the minimal, centered vertical bar */
+.accordion-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: #e5e8ec;  /* match your accordion color */
 }
 
 /* Accordion Button Styles */
 .accordion {
-background-color: #f1f1f1;
+background-color: #fafafa;
 color: #444;
 cursor: pointer;
-padding: 20px;
+padding: 25px;
 width: 100%;
 border: none;
 text-align: left;
@@ -830,127 +1201,131 @@ We support clients through proactive tax planning, personalized advisory, and fu
 
       <div class="accordion-container">
         <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">ITA Return for Local & Expatriates</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">ITA Return for Local & Expatriates</button>
           <div class="panel">
             <h2>Preparation and filing of income tax returns for resident and non-resident individuals, ensuring compliance with Bangladesh’s tax framework.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Corporate Tax Assessment and Planning</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Corporate Tax Assessment and Planning</button>
           <div class="panel">
             <h2>Evaluation and optimization of corporate tax liabilities through efficient planning and regulatory alignment.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Capital Gains Tax</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Capital Gains Tax</button>
           <div class="panel">
             <h2>Advisory and compliance services for capital gains derived from asset or investment disposals.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Inheritance Tax</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Inheritance Tax</button>
           <div class="panel">
             <h2>Support in structuring and reporting inherited assets, ensuring legal and fiscal compliance.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Trusts and Estates</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Trusts and Estates</button>
           <div class="panel">
             <h2>Tax management for trusts and estate transfers, including fiduciary responsibilities and beneficiary obligations.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;"> Deferred Tax</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;"> Deferred Tax</button>
           <div class="panel">
             <h2>Calculation and application of deferred tax balances in line with accounting and tax standards.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Tax Representation</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Tax Representation</button>
           <div class="panel">
             <h2>Acting on behalf of clients before tax authorities, including audits, filings, and formal communications.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Partnership Tax</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Partnership Tax</button>
           <div class="panel">
             <h2>Advising partnerships on tax allocations, obligations, and compliance strategies.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Tax Appeals</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Tax Appeals</button>
           <div class="panel">
             <h2>Filing and managing appeals against tax authority decisions.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Appellate Tribunals</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Appellate Tribunals</button>
           <div class="panel">
             <h2>Representation before appellate tax forums for dispute resolution.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">High Court Tax Reference</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">High Court Tax Reference</button>
           <div class="panel">
             <h2>Handling escalated tax disputes referred to the High Court.</h2>
           </div>
         </div>
 
                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">ADR (Alternative Dispute Resolution)</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">ADR (Alternative Dispute Resolution)</button>
           <div class="panel">
             <h2>The first step is to define the role of the auditor and the conditions for participation…</h2>
           </div>
         </div>
 
                         <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Tax-Effective Remuneration Planning</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Tax-Effective Remuneration Planning</button>
           <div class="panel">
             <h2>Designing compensation strategies that align with both employee satisfaction and tax efficiency.</h2>
           </div>
         </div>
 
                         <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Transfer Pricing</button>
+          <button class="accordion" style="font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Transfer Pricing</button>
           <div class="panel">
             <h2>Advisory on intercompany pricing to ensure compliance with international tax norms and avoid base erosion.</h2>
           </div>
         </div>
 
                         <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Tax Accounting and Disclosure for Audit</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Tax Accounting and Disclosure for Audit</button>
           <div class="panel">
             <h2>Preparation of compliant tax disclosures and financial documentation for audit readiness.</h2>
           </div>
         </div>
 
                                 <div class="accordion-item">
-          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 16px; font-weight: 600; font-style: normal;color: #a8a4a4;">Tax Investigations</button>
+          <button class="accordion" style=" font-family: 'Josefin Sans', sans-serif; font-size: 20px; font-weight: 300; letter-spacing: 2px; font-style: normal;color: #a8a4a4;">Tax Investigations</button>
           <div class="panel">
             <h2>Assistance with audits and inquiries initiated by tax authorities, ensuring clarity and compliance in responses.</h2>
           </div>
         </div>
 
-              <p>Personal Tax Planning</p>
+ </div>
+                    <p>Personal Tax Planning</p>
       <article>In a tax landscape that continues to grow in complexity, B. Kabir & Law Associates helps individuals manage their personal tax obligations with confidence. We provide strategic planning to optimize tax positions, reduce liabilities, and ensure full compliance with evolving regulations. </article>
       <article>Our services are designed to empower taxpayers with the clarity and guidance necessary to meet all statutory requirements—while securing their financial well-being. </article>
-    </div>
+    
+      
+    
       </div>
+</div>
 
       <style>
 /* ===== schedule-section container ===== */
 .schedule-section {
-  width: 60%;
+  width: 50%;
   background-color: #fff;
   font-family: 'Josefin Sans', sans-serif;
   margin: 50px auto;       /* vertical + auto-center */
@@ -986,7 +1361,7 @@ We support clients through proactive tax planning, personalized advisory, and fu
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #333;
-  padding: 25px 20px;
+  padding: 44px 20px;
   text-decoration: none;
   color: #000;
   transition: color 0.3s ease;
@@ -998,8 +1373,9 @@ We support clients through proactive tax planning, personalized advisory, and fu
 
 /* day text */
 .day {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 400;
+  letter-spacing: 2px;
 }
 
 /* arrow icon */
@@ -1009,10 +1385,16 @@ We support clients through proactive tax planning, personalized advisory, and fu
 }
 
 /* on hover, change color of both text & arrow */
+.schedule-item .day,
+.schedule-item .arrow {
+  transition: color 0.25s cubic-bezier(0.4,0,0.2,1); /* or just ease-in-out if you want */
+}
+
 .schedule-item:hover .day,
 .schedule-item:hover .arrow {
   color: #B1976B;
 }
+
 
 
 </style>
@@ -1025,9 +1407,9 @@ We support clients through proactive tax planning, personalized advisory, and fu
 <style>
         .contact-title {
           padding-top: 100px;
-        font-size: 23px;
+        font-size: 22px;
         font-family: "Josefin Sans", sans-serif;
-        letter-spacing: 4px;
+        letter-spacing: 4.4px;
         font-weight: 400;
         margin-bottom: 50px;
         position: relative;
@@ -1041,7 +1423,7 @@ We support clients through proactive tax planning, personalized advisory, and fu
         display: block;
         width: 30px;
         height: 2px;
-        background-color: #000000;
+        background-color: #cccccc;
         margin: 8px auto 0;
         }
 
